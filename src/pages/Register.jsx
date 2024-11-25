@@ -28,7 +28,7 @@ const Register = () => {
         event.preventDefault();
 
         try {
-            const response = await fetch('/api/register', {
+            const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
