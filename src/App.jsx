@@ -1,6 +1,6 @@
 //App.jsx http://localhost:3000/
 import React, { useState } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Register from './pages/Register.jsx';
 import Login from './pages/Login.jsx';
 import HomePage from './pages/HomePage.jsx';
