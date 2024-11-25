@@ -23,7 +23,7 @@ const Login = () => {
 
         try {
             const response = await
-                fetch('/api/login', {
+                fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/login', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

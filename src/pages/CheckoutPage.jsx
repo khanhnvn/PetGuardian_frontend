@@ -42,7 +42,7 @@ useEffect(() => {
     // Gọi API để lấy thông tin giỏ hàng
     const fetchCart = async () => {
     try {
-        const response = await fetch('/api/cart');
+        const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/cart');
         if (!response.ok) {
             throw new Error('Lỗi khi lấy giỏ hàng');
         }
@@ -85,7 +85,7 @@ const totalPrice = useMemo(() => {
 
 const handleCheckout = async () => {
     try {
-        const response = await fetch('/api/cart/checkout', {
+        const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/cart/checkout', {
             method: 'POST',
             headers: {
             'Content-Type': 'application/json'

@@ -21,7 +21,7 @@ const Service = () => {
 
   const fetchServices = async () => {
     try {
-      const response = await fetch('/api/services'); // API endpoint để lấy tất cả dịch vụ
+      const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/services'); // API endpoint để lấy tất cả dịch vụ
       const data = await response.json();
       setServices(data);
     } catch (error) {

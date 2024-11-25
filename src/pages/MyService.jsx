@@ -44,7 +44,7 @@ const MyService = () => {
 
   const fetchMyServices = async () => {
     try {
-      const response = await fetch('/api/services/my'); // API endpoint để lấy dịch vụ của customer
+      const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/services/my'); // API endpoint để lấy dịch vụ của customer
       const data = await response.json();
       setServices(data);
     } catch (error) {
@@ -80,7 +80,7 @@ const MyService = () => {
     event.preventDefault();
 
     try {
-      const response = await fetch('/api/services', {
+      const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/services', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -127,7 +127,7 @@ const MyService = () => {
     event.preventDefault();
 
     try {
-      const response = await fetch(`/api/services/${editingService.id}`, {
+      const response = await fetch(`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/services/${editingService.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -172,7 +172,7 @@ const MyService = () => {
 
   const handleDeleteService = async (serviceId) => {
     try {
-      const response = await fetch(`/api/services/${serviceId}`, {
+      const response = await fetch(`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/services/${serviceId}`, {
         method: 'DELETE',
       });
 
@@ -338,5 +338,6 @@ const MyService = () => {
     </Box>
   );
 };
+
 
 export default MyService;

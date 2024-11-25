@@ -46,7 +46,7 @@ const AllProduct = () => {
 
     const fetchAllProducts = async () => {
         try {
-            const response = await fetch('/api/products'); // API endpoint để lấy tất cả sản phẩm
+            const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/products'); // API endpoint để lấy tất cả sản phẩm
             const data = await response.json();
             console.log(data);
             setProducts(data);
@@ -92,7 +92,7 @@ const AllProduct = () => {
         formData.append('quantity', quantity);
 
         try {
-            const response = await fetch(`/api/products/${editingProduct.id}`, {
+            const response = await fetch(`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/products/${editingProduct.id}`, {
                 method: 'PUT',
                 body: formData,
             });
@@ -130,7 +130,7 @@ const AllProduct = () => {
 
     const handleDeleteProduct = async (productId) => {
         try {
-            const response = await fetch(`/api/products/${productId}`, {
+            const response = await fetch(`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/products/${productId}`, {
                 method: 'DELETE',
             });
 

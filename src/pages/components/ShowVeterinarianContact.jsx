@@ -34,7 +34,7 @@ const ShowVeterinarianContact = ({ contacts, setContacts }) => {
 
   const handleDeleteClick = async (contactId) => {
     try {
-      const response = await fetch(`/api/veterinarian_contacts/${contactId}`, {
+      const response = await fetch(`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/veterinarian_contacts/${contactId}`, {
         method: 'DELETE',
       });
 

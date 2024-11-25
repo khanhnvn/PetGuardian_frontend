@@ -35,7 +35,7 @@ const ChangePassword = () => {
         }
 
         try {
-            const response = await fetch('/api/change_password', {
+            const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/change_password', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

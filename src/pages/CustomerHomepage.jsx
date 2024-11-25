@@ -16,7 +16,7 @@ const CustomerHomePage = () => {
   useEffect(() => {
     const fetchRevenue = async () => {
       try {
-        const response = await fetch('/api/customers/revenue');
+        const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/customers/revenue');
         if (!response.ok) {
           throw new Error('Lỗi khi lấy doanh số');
         }

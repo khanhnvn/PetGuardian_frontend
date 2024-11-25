@@ -32,7 +32,7 @@ const ProductDetail = ({ fetchCart, setCart }) => {
     useEffect(() => {
         const fetchProduct = async () => {
             try {
-                const response = await fetch(`/api/products/${productId}`);
+                const response = await fetch(`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/products/${productId}`);
                 const data = await response.json();
                 setProduct(data);
             } catch (error) {
@@ -58,7 +58,7 @@ const ProductDetail = ({ fetchCart, setCart }) => {
 
     const handleAddToCart = async () => {
         try {
-            const response = await fetch('/api/cart/add', {
+            const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/cart/add', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -6,7 +6,7 @@ const DeleteMedication = ({ petId, medicationId, setPet }) => {
 
     const handleDelete = async () => {
         try {
-            const response = await fetch(`/api/pets/${petId}/medications/${medicationId}`, {
+            const response = await fetch(`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/pets/${petId}/medications/${medicationId}`, {
                 method: 'DELETE',
             });
 

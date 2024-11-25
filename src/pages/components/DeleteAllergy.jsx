@@ -6,7 +6,7 @@ const DeleteAllergy = ({ petId, allergyId, setPet, onRefresh }) => {
 
     const handleDelete = async () => {
         try {
-            const response = await fetch(`/api/pets/${petId}/allergies/${allergyId}`, {
+            const response = await fetch(`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/pets/${petId}/allergies/${allergyId}`, {
                 method: 'DELETE',
             });
 

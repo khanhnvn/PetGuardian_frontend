@@ -23,7 +23,7 @@ const ForgotPassword = () => {
         event.preventDefault();
         setIsSendingCode(true); // Vô hiệu hóa nút
         try {
-            const response = await fetch('/api/forgot_password', { // Gọi API forgot password
+            const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/forgot_password', { // Gọi API forgot password
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

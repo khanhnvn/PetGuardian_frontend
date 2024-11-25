@@ -23,7 +23,7 @@ const AddMedication = ({ petId, setPet, onRefresh }) => {
         formData.append('date_administered', dateAdministered);
 
         try {
-            const response = await fetch(`/api/pets/${petId}/medications`, {
+            const response = await fetch(`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/pets/${petId}/medications`, {
                 method: 'POST',
                 body: formData,
             });

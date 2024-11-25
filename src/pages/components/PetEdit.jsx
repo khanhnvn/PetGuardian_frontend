@@ -50,7 +50,7 @@ const PetEdit = ({ isOpen, onClose, pet, setPets, pets }) => {
         };
 
         try {
-            const response = await fetch(`/api/pets/${pet.id}`, {
+            const response = await fetch(`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/pets/${pet.id}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',

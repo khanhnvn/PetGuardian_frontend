@@ -23,7 +23,7 @@ const AddAllergy = ({ petId, setPet, onRefresh }) => {
         formData.append('symptoms', symptoms);
 
         try {
-            const response = await fetch(`/api/pets/${petId}/allergies`, {
+            const response = await fetch(`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/pets/${petId}/allergies`, {
                 method: 'POST',
                 body: formData,
             });

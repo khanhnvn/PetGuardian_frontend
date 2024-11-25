@@ -32,7 +32,7 @@ const AddVeterinarianContact = () => {
     event.preventDefault();
 
     try {
-      const response = await fetch('/api/veterinarian_contacts', {
+      const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/veterinarian_contacts', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

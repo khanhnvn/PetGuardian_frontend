@@ -20,7 +20,7 @@ const VetInfo = () => {
     const fetchContacts = async () => {
       setIsLoading(true);
       try {
-        const response = await fetch('/api/veterinarian_contacts');
+        const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/veterinarian_contacts');
         if (!response.ok) {
           throw new Error('Lỗi khi lấy danh sách liên lạc bác sĩ thú y');
         }

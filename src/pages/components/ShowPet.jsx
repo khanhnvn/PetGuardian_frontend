@@ -38,7 +38,7 @@ const ShowPet = ({ pets, setPets }) => {
     useEffect(() => {
         const fetchPets = async () => {
             try {
-                const response = await fetch('/api/pets');
+                const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/pets');
                 const data = await response.json();
                 setPets(data);
             } catch (error) {
@@ -61,7 +61,7 @@ const ShowPet = ({ pets, setPets }) => {
 
     const handleDeleteClick = async (petId) => {
         try {
-            const response = await fetch(`/api/pets/${petId}`, {
+            const response = await fetch(`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/pets/${petId}`, {
                 method: 'DELETE',
             });
 

@@ -44,7 +44,7 @@ const VeterinarianContactEdit = ({ isOpen, onClose, contact, setContacts, contac
     event.preventDefault();
 
     try {
-      const response = await fetch(`/api/veterinarian_contacts/${contact.id}`, {
+      const response = await fetch(`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/veterinarian_contacts/${contact.id}`, {
         method: 'PUT', // Hoặc PATCH, tùy thuộc vào API của bạn
         headers: {
           'Content-Type': 'application/json',

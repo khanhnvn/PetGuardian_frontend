@@ -8,7 +8,7 @@ const [transactionDetails, setTransactionDetails] = useState(null);
 useEffect(() => {
     const fetchTransactionDetails = async () => {
     try {
-        const response = await axios.get(`/api/transactions/${transactionId}`);
+        const response = await axios.get(`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/transactions/${transactionId}`);
         setTransactionDetails(response.data);
     } catch (error) {
         console.error('Error fetching transaction details:', error);

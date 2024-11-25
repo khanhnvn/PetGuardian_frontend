@@ -25,7 +25,7 @@ const AdminHomePage = () => {
     useEffect(() => {
         const fetchTransactions = async () => {
             try {
-                const response = await axios.get(`/api/admin/transactions?filter=${filter}`);
+                const response = await axios.get(`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/admin/transactions?filter=${filter}`);
                 const sortedTransactions = response.data.sort((a, b) => new Date(b.order_date) - new Date(a.order_date));
                 setTransactions(sortedTransactions);
                 setFilteredTransactions(sortedTransactions);

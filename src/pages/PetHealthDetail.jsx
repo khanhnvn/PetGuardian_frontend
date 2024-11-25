@@ -43,7 +43,7 @@ const PetHealthDetail = () => {
         const fetchPetDetails = async () => {
             setIsLoading(true); // Bật loading
             try {
-                const response = await fetch(`/api/pets/${petId}`);
+                const response = await fetch(`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/pets/${petId}`);
                 const data = await response.json();
                 setPet(data);
             } catch (error) {
