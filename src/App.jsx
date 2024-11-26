@@ -23,7 +23,7 @@ import CheckoutPage from './pages/CheckoutPage.jsx';
 import Success from './pages/Success.jsx';
 import CancelPay from './pages/Cancel.jsx';
 import Navbar from './pages/components/NavBar.jsx'; // Import Navbar component
-import Footer from "./components/Footer.jsx";
+import Footer from "./pages/components/Footer.jsx";
 
 function App() {
     const [cart, setCart] = useState([]);
