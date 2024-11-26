@@ -35,7 +35,8 @@ const Login = () => {
 
             if (response.ok) {
                 const data = await response.json();
-                console.log("Token nhận được:", data.token);
+                const token = data.token;
+                
                 const roleId = data.role_id;
 
                 toast({
@@ -47,7 +48,7 @@ const Login = () => {
 
                 // Lưu token vào localStorage
                 localStorage.setItem('token', data.token);
-
+                console.log("Token đã lưu:", localStorage.getItem('token'));
                 if (roleId === 1) {
                     navigate('/homepage');
                 } else if (roleId === 3) {
