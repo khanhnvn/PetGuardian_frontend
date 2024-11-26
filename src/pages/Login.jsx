@@ -51,6 +51,7 @@ const Login = () => {
                 console.log("role id:", roleId);
                 
                 if (roleId === 1) {
+                    console.log("role id:", roleId);
                     navigate('/homepage');
                 } else if (roleId === 3) {
                     navigate('/customerhomepage');
