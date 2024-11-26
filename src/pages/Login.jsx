@@ -48,6 +48,7 @@ const Login = () => {
                 // Lưu token vào localStorage
                 localStorage.setItem('token', token);
                 console.log("Token đã lưu:", localStorage.getItem('token'));
+                
                 if (roleId === 1) {
                     navigate('/homepage');
                 } else if (roleId === 3) {
