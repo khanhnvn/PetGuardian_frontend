@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Register from './pages/Register.jsx';
 import Login from './pages/Login.jsx';
-import HomePage from './pages/HomePage.jsx';
+import HomePage from './pages/Homepage.jsx';
 import PetInfo from './pages/PetInfo.jsx';
 import Product from './pages/Product.jsx';
 import Reminder from "./pages/Reminder.jsx";

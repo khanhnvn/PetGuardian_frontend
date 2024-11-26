@@ -35,7 +35,7 @@ const Login = () => {
 
             if (response.ok) {
                 const data = await response.json();
-
+                console.log("Token nhận được:", data.token);
                 const roleId = data.role_id;
 
                 toast({

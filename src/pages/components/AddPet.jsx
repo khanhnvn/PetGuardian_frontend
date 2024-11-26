@@ -47,6 +47,7 @@ const AddPet = () => {
 
         try {
             const token = localStorage.getItem('token');
+            console.log("Token gửi đi:", token);
             const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/pets', {
                 method: 'POST',
                 headers: {
