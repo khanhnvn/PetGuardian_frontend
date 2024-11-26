@@ -23,7 +23,7 @@ const AddVaccine = ({ petId, setPet, onRefresh }) => {
         formData.append('date_administered', dateAdministered);
 
         try {
-            const token = JSON.parse(localStorage.getItem('user')).token;
+            const token = localStorage.getItem('token');
             const response = await fetch(`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/pets/${petId}/vaccines`, {
                 method: 'POST',
                 headers: {

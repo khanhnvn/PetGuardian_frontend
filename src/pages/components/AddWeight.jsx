@@ -21,7 +21,7 @@ const AddWeight = ({ petId, setPet, onRefresh }) => {
         formData.append('date_recorded', dateRecorded);
 
         try {
-            const token = JSON.parse(localStorage.getItem('user')).token;
+            const token = localStorage.getItem('token');
             const response = await fetch(`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/pets/${petId}/weight`, {
                 method: 'POST',
                 headers: {
