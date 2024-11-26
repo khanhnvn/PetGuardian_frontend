@@ -29,7 +29,7 @@ function App() {
 
     const fetchCart = async () => {
         try {
-            const response = await fetch('/api/cart');
+            const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/cart');
             if (!response.ok) {
                 throw new Error('Lỗi khi lấy giỏ hàng');
             }
