@@ -28,6 +28,7 @@ import Footer from "./pages/components/Footer.jsx";
 function App() {
     const [cart, setCart] = useState([]);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [userId, setUserId] = useState(null); 
 
     useEffect(() => {
         const checkLogin = async () => {
@@ -41,6 +42,8 @@ function App() {
                         credentials: 'include'
                     });
                     if (response.ok) {
+                        const data = await response.json(); // Lấy dữ liệu từ response
+                        setUserId(data.user_id); // Lưu userId vào state
                         setIsLoggedIn(true);
                     } else {
                         localStorage.removeItem('token'); 
@@ -76,7 +79,7 @@ function App() {
 
     return (
         <BrowserRouter basename="/">
-            {isLoggedIn && <Navbar />} {/* Sử dụng Navbar component */}
+            {isLoggedIn && <Navbar userId={userId} />} {/* Sử dụng Navbar component */}
             <Routes>
                 <Route path="/" element={<Navigate to="/login" />} /> 
                 <Route path="/register" element={<Register />} />
