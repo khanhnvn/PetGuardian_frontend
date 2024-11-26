@@ -1,3 +1,4 @@
+//AddMedication.jsx
 import { useState } from 'react';
 import {
     FormControl,
@@ -23,9 +24,14 @@ const AddMedication = ({ petId, setPet, onRefresh }) => {
         formData.append('date_administered', dateAdministered);
 
         try {
+            const token = JSON.parse(localStorage.getItem('user')).token;
             const response = await fetch(`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/pets/${petId}/medications`, {
                 method: 'POST',
+                headers: {
+                    'Authorization': 'Bearer ' + token // Thêm token vào header
+                },
                 body: formData,
+                credentials: 'include'
             });
 
             if (response.ok) {
@@ -44,10 +50,10 @@ const AddMedication = ({ petId, setPet, onRefresh }) => {
                     isClosable: true,
                 });
             } else {
-                console.error('Lỗi khi thêm thuốc');
+                const errorData = await response.json();
                 toast({
                     title: 'Lỗi!',
-                    description: 'Lỗi khi thêm thuốc',
+                    description: errorData.message || 'Lỗi khi thêm thuốc',
                     status: 'error',
                     duration: 3000,
                     isClosable: true,

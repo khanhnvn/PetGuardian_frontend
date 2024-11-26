@@ -1,5 +1,6 @@
+//PetHealthDetail.jsx
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import {
     Box,
     Container,
@@ -19,10 +20,8 @@ import {
     Tr,
     Th,
     Td,
-    Spinner, Flex, Grid,
+    Spinner, Grid,
 } from '@chakra-ui/react';
-import Navbar from './components/NavBar.jsx';
-import Footer from './components/Footer.jsx';
 import AddWeight from "./components/AddWeight.jsx";
 import DeleteWeight from "./components/DeleteWeight.jsx";
 import AddVaccine from "./components/AddVaccine.jsx";
@@ -33,6 +32,8 @@ import AddAllergy from './components/AddAllergy.jsx';
 import DeleteAllergy from './components/DeleteAllergy.jsx';
 
 const PetHealthDetail = () => {
+    const toast = useToast();
+    const navigate = useNavigate();
     const { petId } = useParams();
     const [pet, setPet] = useState(null);
     const [isLoading, setIsLoading] = useState(true); // Thêm state loading
@@ -43,18 +44,48 @@ const PetHealthDetail = () => {
         const fetchPetDetails = async () => {
             setIsLoading(true); // Bật loading
             try {
-                const response = await fetch(`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/pets/${petId}`);
-                const data = await response.json();
-                setPet(data);
+                const token = JSON.parse(localStorage.getItem('user')).token; // Lấy token
+                const response = await fetch(`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/pets/${petId}`, {
+                    headers: {
+                        'Authorization': 'Bearer ' + token // Thêm token vào header
+                    },
+                    credentials: 'include'
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    setPet(data);
+                } else {
+                    // Xử lý lỗi 401 Unauthorized
+                    if (response.status === 401) {
+                        navigate('/login');
+                    } else {
+                        const errorData = await response.json();
+                        toast({
+                            title: 'Lỗi!',
+                            description: errorData.message || 'Lỗi khi lấy thông tin thú cưng',
+                            status: 'error',
+                            duration: 3000,
+                            isClosable: true,
+                        });
+                    }
+                }
             } catch (error) {
                 console.error('Lỗi khi lấy thông tin thú cưng:', error);
+                toast({
+                    title: 'Lỗi!',
+                    description: 'Đã có lỗi xảy ra.',
+                    status: 'error',
+                    duration: 3000,
+                    isClosable: true,
+                });
             } finally {
                 setIsLoading(false); // Tắt loading
             }
         };
 
         fetchPetDetails();
-    }, [petId, refresh]);
+    }, [petId, refresh, navigate, toast]);
 
     // Hàm định dạng ngày tháng
     const formatDate = (dateString) => {
@@ -72,7 +103,6 @@ const PetHealthDetail = () => {
 
     return (
         <Box bg="#FFFCF8" minHeight="100vh" display="flex" flexDirection="column">
-            <Navbar />
 
             <Box flex={1}>
                 <Container maxW="container.lg" p={10}>
@@ -262,8 +292,7 @@ const PetHealthDetail = () => {
                     )}
                 </Container>
             </Box>
-
-            <Footer />
+            
         </Box>
     );
 };

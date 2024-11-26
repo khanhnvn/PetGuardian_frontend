@@ -39,6 +39,7 @@ const Register = () => {
                     email: email, 
                     role_id: roleId 
                 }),
+                credentials: 'include'
             });
 
             const data = await response.json();
@@ -51,6 +52,12 @@ const Register = () => {
                 });
                 navigate('/login');
             } else {
+                let errorMessage = 'Đã có lỗi xảy ra.';
+                if (data.message) {
+                    errorMessage = data.message;
+                } else if (response.status === 409) {
+                    errorMessage = 'Email hoặc tên người dùng đã tồn tại.';
+                } 
                 toast({
                     title: 'Lỗi!',
                     description: data.message || 'Đã có lỗi xảy ra.',

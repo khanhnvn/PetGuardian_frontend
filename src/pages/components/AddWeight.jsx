@@ -21,9 +21,14 @@ const AddWeight = ({ petId, setPet, onRefresh }) => {
         formData.append('date_recorded', dateRecorded);
 
         try {
+            const token = JSON.parse(localStorage.getItem('user')).token;
             const response = await fetch(`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/pets/${petId}/weight`, {
                 method: 'POST',
-                body: formData, // Gửi FormData
+                headers: {
+                    'Authorization': 'Bearer ' + token // Thêm token vào header
+                },
+                body: formData,
+                credentials: 'include'
             });
 
             if (response.ok) {
@@ -44,10 +49,10 @@ const AddWeight = ({ petId, setPet, onRefresh }) => {
                 });
             } else {
                 // Xử lý lỗi
-                console.error('Lỗi khi thêm cân nặng');
+                const errorData = await response.json();
                 toast({
                     title: 'Lỗi!',
-                    description: 'Lỗi khi thêm cân nặng',
+                    description: errorData.message || 'Lỗi khi thêm cân nặng',
                     status: 'error',
                     duration: 3000,
                     isClosable: true,

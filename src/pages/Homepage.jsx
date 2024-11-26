@@ -1,30 +1,21 @@
 //Homepage.jsx
 import {
     Box,
-    Button,
     Container,
-    Flex,
     Heading,
-    Image,
-    Spacer,
-    Tabs,
-    TabList,
-    Tab,
-    TabPanels,
-    TabPanel,
     Text,
-    VStack, useDisclosure, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody,
+    VStack, 
 } from '@chakra-ui/react';
-import Navbar from "./components/NavBar.jsx";
-import Footer from "./components/Footer.jsx";
+import { Navigate } from 'react-router-dom';
 
-const HomePage = () => {
+const HomePage = ({ isLoggedIn }) => {
+    if (!isLoggedIn) {
+        return <Navigate to="/login" />; 
+    }
     return (
         <Box bg="#FFFCF8" minHeight="100vh"
              display="flex" flexDirection="column"
         > {/* Đặt màu nền cho trang */}
-            {/* Navigation Bar */}
-            <Navbar />
 
             {/* Body */}
             <Box flex={1}>
@@ -38,9 +29,6 @@ const HomePage = () => {
                     </VStack>
                 </Container>
             </Box>
-
-            {/* Footer */}
-            <Footer />
 
         </Box>
     );

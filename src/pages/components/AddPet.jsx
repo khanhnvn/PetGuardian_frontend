@@ -74,9 +74,10 @@ const AddPet = () => {
                 setPetImage(null);
                 onClose();
             } else {
+                const errorData = await response.json();
                 toast({
                     title: 'Lỗi!',
-                    description: 'Lỗi khi thêm thú cưng',
+                    description: errorData.message || 'Lỗi khi thêm thú cưng',
                     status: 'error',
                     duration: 3000,
                     isClosable: true,

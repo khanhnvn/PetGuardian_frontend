@@ -1,3 +1,4 @@
+//AddAllergy.jsx
 import { useState } from 'react';
 import {
     FormControl,
@@ -23,9 +24,14 @@ const AddAllergy = ({ petId, setPet, onRefresh }) => {
         formData.append('symptoms', symptoms);
 
         try {
+            const token = JSON.parse(localStorage.getItem('user')).token; // Lấy token
             const response = await fetch(`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/pets/${petId}/allergies`, {
                 method: 'POST',
+                headers: {
+                    'Authorization': 'Bearer ' + token // Thêm token vào header
+                },
                 body: formData,
+                credentials: 'include'
             });
 
             if (response.ok) {
@@ -45,10 +51,10 @@ const AddAllergy = ({ petId, setPet, onRefresh }) => {
                     isClosable: true,
                 });
             } else {
-                console.error('Lỗi khi thêm dị ứng');
+                const errorData = await response.json();
                 toast({
                     title: 'Lỗi!',
-                    description: 'Lỗi khi thêm dị ứng',
+                    description: errorData.message || 'Lỗi khi thêm dị ứng',
                     status: 'error',
                     duration: 3000,
                     isClosable: true,

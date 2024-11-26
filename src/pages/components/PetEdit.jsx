@@ -1,3 +1,4 @@
+//PetEdit.jsx
 import { useState, useEffect } from 'react';
 import {
     Modal,
@@ -50,12 +51,15 @@ const PetEdit = ({ isOpen, onClose, pet, setPets, pets }) => {
         };
 
         try {
+            const token = JSON.parse(localStorage.getItem('user')).token;
             const response = await fetch(`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/pets/${pet.id}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token
                 },
                 body: JSON.stringify(updatedPet),
+                credentials: 'include'
             });
 
             if (response.ok) {
@@ -72,9 +76,10 @@ const PetEdit = ({ isOpen, onClose, pet, setPets, pets }) => {
 
                 onClose(); // Đóng modal
             } else {
+                const errorData = await response.json();
                 toast({
                     title: 'Lỗi!',
-                    description: 'Lỗi khi cập nhật thú cưng',
+                    description: errorData.message || 'Lỗi khi cập nhật thú cưng',
                     status: 'error',
                     duration: 3000,
                     isClosable: true,

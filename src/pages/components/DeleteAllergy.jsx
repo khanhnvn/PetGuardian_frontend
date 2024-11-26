@@ -1,3 +1,4 @@
+//DeleteAllergy.jsx
 import { IconButton, useToast } from '@chakra-ui/react';
 import { DeleteIcon } from '@chakra-ui/icons';
 
@@ -6,8 +7,13 @@ const DeleteAllergy = ({ petId, allergyId, setPet, onRefresh }) => {
 
     const handleDelete = async () => {
         try {
+            const token = JSON.parse(localStorage.getItem('user')).token; // Lấy token
             const response = await fetch(`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/pets/${petId}/allergies/${allergyId}`, {
                 method: 'DELETE',
+                headers: {
+                    'Authorization': 'Bearer ' + token // Thêm token vào header
+                },
+                credentials: 'include'
             });
 
             if (response.ok) {
@@ -23,10 +29,10 @@ const DeleteAllergy = ({ petId, allergyId, setPet, onRefresh }) => {
                     isClosable: true,
                 });
             } else {
-                console.error('Lỗi khi xóa dị ứng');
+                const errorData = await response.json();
                 toast({
                     title: 'Lỗi!',
-                    description: 'Lỗi khi xóa dị ứng',
+                    description: errorData.message || 'Lỗi khi xóa dị ứng',
                     status: 'error',
                     duration: 3000,
                     isClosable: true,

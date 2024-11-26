@@ -6,8 +6,13 @@ const DeleteWeight = ({ petId, weightId, setPet }) => {
 
     const handleDelete = async () => {
         try {
+            const token = JSON.parse(localStorage.getItem('user')).token;
             const response = await fetch(`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/pets/${petId}/weight/${weightId}`, {
                 method: 'DELETE',
+                headers: {
+                    'Authorization': 'Bearer ' + token // Thêm token vào header
+                },
+                credentials: 'include'
             });
 
             if (response.ok) {
@@ -23,10 +28,10 @@ const DeleteWeight = ({ petId, weightId, setPet }) => {
                 });
             } else {
                 // Xử lý lỗi
-                console.error('Lỗi khi xóa cân nặng');
+                const errorData = await response.json();
                 toast({
                     title: 'Lỗi!',
-                    description: 'Lỗi khi xóa cân nặng',
+                    description: errorData.message || 'Lỗi khi xóa cân nặng',
                     status: 'error',
                     duration: 3000,
                     isClosable: true,

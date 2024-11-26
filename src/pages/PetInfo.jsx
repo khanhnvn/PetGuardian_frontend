@@ -2,20 +2,20 @@
 import {
     Box, Container
 } from '@chakra-ui/react';
-import Navbar from "./components/NavBar.jsx";
-import Footer from "./components/Footer.jsx";
 import AddPet from "./components/AddPet.jsx";
 import ShowPet from "./components/ShowPet.jsx";
 import {useState} from "react";
 
-const PetInfo = () => {
+const PetInfo = ({ isLoggedIn }) => { // Nhận props isLoggedIn từ App.jsx
+    if (!isLoggedIn) {
+        return <Navigate to="/login" />; // Chuyển hướng nếu chưa đăng nhập
+    }
+    
     const [pets, setPets] = useState([]);
     return (
         <Box bg="#FFFCF8" minHeight="100vh"
              display="flex" flexDirection="column"
         > {/* Đặt màu nền cho trang */}
-            {/* Navigation Bar */}
-            <Navbar />
 
             {/* Body */}
             <Box flex={1}>
@@ -24,9 +24,6 @@ const PetInfo = () => {
                     <ShowPet pets={pets} setPets={setPets} /> {/* Component hiển thị danh sách thú cưng */}
                 </Container>
             </Box>
-
-            {/* Footer */}
-            <Footer />
 
 
         </Box>

@@ -38,6 +38,7 @@ const ShowPet = ({ pets, setPets }) => {
     useEffect(() => {
         const fetchPets = async () => {
             try {
+                const token = JSON.parse(localStorage.getItem('user')).token;
                 const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/pets', {
                     method: 'GET',
                     headers: {
@@ -45,15 +46,40 @@ const ShowPet = ({ pets, setPets }) => {
                     },
                     credentials: 'include'
                 });
-                const data = await response.json();
-                setPets(data);
+                if (response.ok) {
+                    const data = await response.json();
+                    setPets(data);
+                } else {
+                    // Xử lý lỗi 401 Unauthorized
+                    if (response.status === 401) {
+                        // Ví dụ: chuyển hướng đến trang đăng nhập
+                        navigate('/login');
+                    } else {
+                        // Xử lý các lỗi khác
+                        const errorData = await response.json();
+                        toast({
+                            title: 'Lỗi!',
+                            description: errorData.message || 'Lỗi khi lấy thông tin thú cưng',
+                            status: 'error',
+                            duration: 3000,
+                            isClosable: true,
+                        });
+                    }
+                }
             } catch (error) {
                 console.error('Lỗi khi lấy thông tin thú cưng:', error);
+                toast({
+                    title: 'Lỗi!',
+                    description: 'Đã có lỗi xảy ra.',
+                    status: 'error',
+                    duration: 3000,
+                    isClosable: true,
+                });
             }
         };
 
         fetchPets();
-    }, []);
+    }, [navigate, toast]);
 
     const handlePetClick = (pet) => {
         navigate(`/pet/${pet.id}/health`); // Chuyển hướng đến trang chi tiết sức khỏe
@@ -67,6 +93,7 @@ const ShowPet = ({ pets, setPets }) => {
 
     const handleDeleteClick = async (petId) => {
         try {
+            const token = JSON.parse(localStorage.getItem('user')).token;
             const response = await fetch(`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/pets/${petId}`, {
                 method: 'DELETE',
                 headers: {
@@ -82,9 +109,31 @@ const ShowPet = ({ pets, setPets }) => {
             } else {
                 // Xử lý lỗi
                 console.error('Lỗi khi xóa thú cưng');
+
+                if (response.status === 401) {
+                    // Chuyển hướng đến trang đăng nhập
+                    navigate('/login');
+                } else {
+                    // Xử lý các lỗi khác
+                    const errorData = await response.json();
+                    toast({
+                        title: 'Lỗi!',
+                        description: errorData.message || 'Lỗi khi xóa thú cưng',
+                        status: 'error',
+                        duration: 3000,
+                        isClosable: true,
+                    });
+                }
             }
         } catch (error) {
             console.error('Lỗi:', error);
+            toast({
+                title: 'Lỗi!',
+                description: 'Đã có lỗi xảy ra.',
+                status: 'error',
+                duration: 3000,
+                isClosable: true,
+            });
         }
     };
 

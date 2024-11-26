@@ -49,7 +49,8 @@ const Login = () => {
                 localStorage.setItem('user', JSON.stringify({ 
                     id: data.id, 
                     email: email, 
-                    role_id: data.role_id 
+                    role_id: data.role_id,
+                    token: data.token
                 }));
 
                 if (roleId === 1) {
