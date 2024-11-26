@@ -35,7 +35,6 @@ const Login = () => {
 
             if (response.ok) {
                 const data = await response.json();
-                const token = data.token;
                 
                 const roleId = data.role_id;
 
