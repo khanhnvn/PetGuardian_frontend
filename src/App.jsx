@@ -35,6 +35,7 @@ function App() {
             const token = localStorage.getItem('token'); 
             if (token) {
                 try {
+                    console.log("Token gửi đi:", token); 
                     const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/check_login', { 
                         headers: {
                             'Authorization': 'Bearer ' + token
