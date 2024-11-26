@@ -46,6 +46,7 @@ const AddPet = () => {
         formData.append('pet_image', petImage);
 
         try {
+            const token = JSON.parse(localStorage.getItem('user')).token; // Lấy token từ localStorage
             const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/pets', {
                 method: 'POST',
                 headers: {
