@@ -9,6 +9,7 @@ import {
 import { Navigate } from 'react-router-dom';
 
 const HomePage = ({ isLoggedIn }) => {
+    console.log("role id:", roleId);
     if (!isLoggedIn) {
         return <Navigate to="/login" />; 
     }
