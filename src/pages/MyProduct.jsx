@@ -179,7 +179,7 @@ const MyProduct = () => {
                     isClosable: true,
                 });
             } else {
-                console.error('Lỗi khi cập nhật sản phẩm');
+                console.error('Lỗi khi cập nhật sản phẩm', response);
                 toast({
                     title: 'Lỗi!',
                     description: 'Lỗi khi cập nhật sản phẩm.',
