@@ -107,18 +107,6 @@ const ProductDetail = ({ fetchCart, setCart }) => {
         }
     };
 
-    const handlePrevImage = () => {
-        setCurrentImageIndex((prevIndex) =>
-            prevIndex === 0 ? product.images.length - 1 : prevIndex - 1,
-        );
-    };
-
-    const handleNextImage = () => {
-        setCurrentImageIndex((prevIndex) =>
-            prevIndex === product.images.length - 1 ? 0 : prevIndex + 1,
-        );
-    };
-
     if (!product) {
         return <div>Loading...</div>;
     }
@@ -133,11 +121,7 @@ const ProductDetail = ({ fetchCart, setCart }) => {
                     </Heading>
                     <HStack spacing={4}>
                         <Box w="40%">
-                            <Image src={`/uploads/${product.images[currentImageIndex].image_url}`} alt={product.name} h="300px" objectFit="cover" mb={2} />
-                            <HStack justifyContent="center" mt={2}>
-                                <IconButton aria-label="Previous image" icon={<ArrowBackIcon />} onClick={handlePrevImage} />
-                                <IconButton aria-label="Next image" icon={<ArrowForwardIcon />} onClick={handleNextImage} />
-                            </HStack>
+                            <Image src={product.image ? `/uploads/${product.image}` : `/uploads/default_image.jpg`} alt={product.name} h="300px" objectFit="cover" mb={2} />
                         </Box>
                         <Box w="60%">
                             {/*<Text fontSize="sm" color="gray.500">

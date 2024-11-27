@@ -27,8 +27,7 @@ const ProductCard = ({ product, onAddToCart, fetchCart, setCart }) => {
     return (
         <Link to={`/product/${product.id}`}> {/* Liên kết đến trang chi tiết sản phẩm */}
             <Box borderWidth="1px" borderRadius="lg" overflow="hidden" p={4} cursor="pointer">
-                {/* Hiển thị hình ảnh đầu tiên */}
-                <Image src={`/uploads/${product.images && product.images.length > 0 ? product.images[0] : 'default_image.jpg'}`} 
+                <Image src={product.image ? `/uploads/${product.image}` : `/uploads/default_image.jpg`}
                     alt={product.name} h="200px" objectFit="cover" mb={2} 
                 />
                 <Heading as="h3" size="md" mb={2}>
