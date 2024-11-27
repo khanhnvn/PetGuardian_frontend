@@ -1,3 +1,4 @@
+//App.jsx
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Register from './pages/Register.jsx';
@@ -43,8 +44,11 @@ function App() {
                         },
                         credentials: 'include'
                     });
+                    console.log("Response từ /api/check_login:", response); // In ra response object
                     if (response.ok) {
                         const data = await response.json(); 
+                        console.log("Data từ /api/check_login:", data); // In ra dữ liệu response
+                        
                         setUserId(data.user_id);
                         setIsLoggedIn(true);
                         console.log("isLoggedIn:", isLoggedIn); // In giá trị của isLoggedIn

@@ -38,6 +38,10 @@ const Login = () => {
                 const token = data.token;
                 const roleId = data.role_id;
 
+                console.log("Response data:", data); // In ra toàn bộ dữ liệu response
+                console.log("Token nhận được:", token); // In ra token nhận được
+                console.log("Role ID:", roleId); // In ra role ID
+
                 toast({
                     title: 'Đăng nhập thành công!',
                     status: 'success',
@@ -53,6 +57,7 @@ const Login = () => {
                 
                 if (roleId === 1) {
                     console.log("role id:", localStorage.getItem('role_id'));
+                    console.log("Chuyển hướng đến /homepage");
                     navigate('/homepage');
                 } else if (roleId === 3) {
                     navigate('/customerhomepage');
