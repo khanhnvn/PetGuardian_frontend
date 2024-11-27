@@ -92,8 +92,7 @@ const ShowPet = ({ pets, setPets }) => {
     const handleDeleteClick = async (petId) => {
         try {
             const response = await fetch(`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/pets/${petId}`, {
-                method: 'DELETE',
-                credentials: 'include' 
+                method: 'DELETE'
             });
 
             if (response.ok) {
