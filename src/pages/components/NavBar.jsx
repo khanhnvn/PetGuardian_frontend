@@ -32,7 +32,7 @@ const Navbar = ({}) => {
 
     const handleLogout = async () => {
         try {
-            const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com//api/logout', { method: 'POST' });
+            const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/logout', { method: 'POST' });
             if (response.ok) {
                 localStorage.clear();
                 navigate('/login');
