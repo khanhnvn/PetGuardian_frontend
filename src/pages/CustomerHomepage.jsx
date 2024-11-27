@@ -51,36 +51,38 @@ const CustomerHomePage = () => {
                 <Container maxW="container.lg" p={10}>
                     <VStack spacing={4} alignItems="flex-start">
                         <Heading as="h1" size="xl">
-                            Tổng doanh thu
+                            Tổng doanh thu (không tính phí ship)
                         </Heading>
                         <Text fontSize="2xl">
                             {revenue} VND
                         </Text>
 
-                        {/* Display sales history in a table */}
-                        <Heading as="h2" size="lg" mt={8}>
-                            Lịch sử bán hàng
-                        </Heading>
-                        <Table variant="simple">
-                            <Thead>
-                                <Tr>
-                                    <Th>Tên món hàng</Th>
-                                    <Th>Ngày, giờ mua</Th>
-                                    <Th>Số lượng</Th>
-                                    <Th>Giá tiền</Th>
-                                </Tr>
-                            </Thead>
-                            <Tbody>
-                                {salesHistory.map((item) => (
-                                    <Tr key={item.id}>
-                                        <Td>{item.name}</Td>
-                                        <Td>{item.order_date}</Td>
-                                        <Td>{item.quantity}</Td>
-                                        <Td>{item.price}</Td>
+                        {/* Check if salesHistory is an array and not empty */}
+                        {Array.isArray(salesHistory) && salesHistory.length > 0 ? (
+                            <Table variant="simple">
+                                <Thead>
+                                    <Tr>
+                                        <Th>Tên món hàng</Th>
+                                        <Th>Ngày, giờ mua</Th>
+                                        <Th>Số lượng</Th>
+                                        <Th>Giá tiền</Th>
                                     </Tr>
-                                ))}
-                            </Tbody>
-                        </Table>
+                                </Thead>
+                                <Tbody>
+                                    {salesHistory.map((item) => (
+                                        <Tr key={item.id}> {/* Make sure each item has a unique 'id' */}
+                                            <Td>{item.name}</Td>
+                                            <Td>{item.order_date}</Td>
+                                            <Td>{item.quantity}</Td>
+                                            <Td>{item.price}</Td>
+                                        </Tr>
+                                    ))}
+                                </Tbody>
+                            </Table>
+                        ) : (
+                            <Text>Không có lịch sử bán hàng.</Text> // Display a message if no sales history
+                        )}
+						
                     </VStack>
                 </Container>
             </Box>
