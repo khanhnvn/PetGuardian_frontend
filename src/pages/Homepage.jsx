@@ -7,6 +7,8 @@ import {
     VStack, 
 } from '@chakra-ui/react';
 import { Navigate } from 'react-router-dom';
+import Navbar from './components/NavBar.jsx'; // Import Navbar component
+import Footer from "./components/Footer.jsx";
 
 const HomePage = ({ isLoggedIn }) => {
     console.log("checkconsolelog");

@@ -30,6 +30,16 @@ function App() {
     const [cart, setCart] = useState([]);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [userId, setUserId] = useState(null); 
+    const appVersion = '1.0.1';
+
+    useEffect(() => {
+        const storedVersion = localStorage.getItem('appVersion');
+        if (storedVersion !== appVersion) {
+          localStorage.clear();
+          localStorage.setItem('appVersion', appVersion);
+          console.log('Đã xóa localStorage do cập nhật phiên bản ứng dụng.');
+        }
+      }, []);
 
     useEffect(() => {
         const checkLogin = async () => {
@@ -48,7 +58,7 @@ function App() {
                     if (response.ok) {
                         const data = await response.json(); 
                         console.log("Data từ /api/check_login:", data); // In ra dữ liệu response
-                        
+
                         setUserId(data.user_id);
                         setIsLoggedIn(true);
                         console.log("isLoggedIn:", isLoggedIn); // In giá trị của isLoggedIn
