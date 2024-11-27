@@ -9,7 +9,7 @@ import {
 import Navbar from './components/NavBar.jsx'; // Import Navbar component
 import Footer from "./components/Footer.jsx";
 
-const HomePage = ({ isLoggedIn }) => {
+const HomePage = ({}) => {
     console.log("checkconsolelog");
     return (
         <Box bg="#FFFCF8" minHeight="100vh"

@@ -51,7 +51,9 @@ const Login = () => {
                     email: email, 
                     role_id: data.role_id
                 }));
-                console.log("role id đã tạo:", localStorage.getItem('role_id'));
+
+                const user = JSON.parse(localStorage.getItem('user'));
+                console.log("role id đã tạo:", user.role_id); 
                 
                 if (roleId === 1) {
                     console.log("Chuyển hướng đến /homepage");

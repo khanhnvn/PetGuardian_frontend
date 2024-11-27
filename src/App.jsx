@@ -38,21 +38,6 @@ function App() {
         }
       }, []);
 
-    useEffect(() => {
-        const checkLogin = async () => {
-            const user = JSON.parse(localStorage.getItem('user')); // Lấy user từ localStorage
-            if (user) { // Kiểm tra xem user có tồn tại không
-                try {
-                    setIsLoggedIn(true); // Nếu có, cập nhật isLoggedIn thành true
-                } catch (error) {
-                    console.error('Lỗi khi kiểm tra đăng nhập:', error);
-                    setIsLoggedIn(false);
-                }
-            }
-        };
-        checkLogin();
-    }, []);
-
     const fetchCart = async () => {
         try {
             const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/cart', {
@@ -79,22 +64,22 @@ function App() {
                 <Route path="/forgotpassword" element={<ForgotPassword />} />
                 <Route path="/changepassword" element={<ChangePassword />} />
 
-                <Route path="/homepage" element={isLoggedIn ? <HomePage /> : <Navigate to="/login" />} />
-                <Route path="/pet" element={isLoggedIn ? <PetInfo /> : <Navigate to="/login" />} />
-                <Route path="/reminder" element={isLoggedIn ? <Reminder /> : <Navigate to="/login" />} />
-                <Route path="/vet" element={isLoggedIn ? <VetInfo /> : <Navigate to="/login" />} />
-                <Route path="/myservice" element={isLoggedIn ? <MyService /> : <Navigate to="/login" />} />
-                <Route path="/service" element={isLoggedIn ? <Service /> : <Navigate to="/login" />} />
-                <Route path="/pet/:petId/health" element={isLoggedIn ? <PetHealthDetail /> : <Navigate to="/login" />} />
-                <Route path="/customerhomepage" element={isLoggedIn ? <CustomerHomePage /> : <Navigate to="/login" />} />
-                <Route path="/adminhomepage" element={isLoggedIn ? <AdminHomePage /> : <Navigate to="/login" />} />
-                <Route path="/myproduct" element={isLoggedIn ? <MyProduct /> : <Navigate to="/login" />} /> 
-                <Route path="/admin/allproducts" element={isLoggedIn ? <AllProducts /> : <Navigate to="/login" />} />
-                <Route path="/admin/allservices" element={isLoggedIn ? <AdminServices /> : <Navigate to="/login" />} />
-                <Route path="/cart" element={isLoggedIn ? <Cart fetchCart={fetchCart} cart={cart} setCart={setCart} /> : <Navigate to="/login" />} /> 
-                <Route path="/product" element={isLoggedIn ? <Product fetchCart={fetchCart} cart={cart} setCart={setCart} /> : <Navigate to="/login" />} /> 
-                <Route path="/product/:productId" element={isLoggedIn ? <ProductDetail fetchCart={fetchCart} setCart={setCart} /> : <Navigate to="/login" />} />
-                <Route path="/checkout" element={isLoggedIn ? <CheckoutPage fetchCart={fetchCart} cart={cart} setCart={setCart} /> : <Navigate to="/login" />} /> 
+                <Route path="/homepage" element={<HomePage /> } />
+                <Route path="/pet" element={<PetInfo /> } />
+                <Route path="/reminder" element={<Reminder /> } />
+                <Route path="/vet" element={<VetInfo /> } />
+                <Route path="/myservice" element={<MyService /> } />
+                <Route path="/service" element={<Service /> } />
+                <Route path="/pet/:petId/health" element={<PetHealthDetail /> } />
+                <Route path="/customerhomepage" element={<CustomerHomePage /> } />
+                <Route path="/adminhomepage" element={<AdminHomePage /> } />
+                <Route path="/myproduct" element={<MyProduct /> } /> 
+                <Route path="/admin/allproducts" element={<AllProducts /> } />
+                <Route path="/admin/allservices" element={<AdminServices /> } />
+                <Route path="/cart" element={<Cart fetchCart={fetchCart} cart={cart} setCart={setCart} /> } /> 
+                <Route path="/product" element={<Product fetchCart={fetchCart} cart={cart} setCart={setCart} /> } /> 
+                <Route path="/product/:productId" element={<ProductDetail fetchCart={fetchCart} setCart={setCart} /> } />
+                <Route path="/checkout" element={<CheckoutPage fetchCart={fetchCart} cart={cart} setCart={setCart} /> } /> 
                 
                 <Route path="/success" element={<Success />} /> 
                 <Route path="/cancel" element={<CancelPay />} /> 
