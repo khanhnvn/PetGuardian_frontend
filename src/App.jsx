@@ -30,7 +30,7 @@ function App() {
     const [cart, setCart] = useState([]);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [userId, setUserId] = useState(null); 
-    const appVersion = '1.0.1';
+    const appVersion = '1.0.2';
 
     useEffect(() => {
         const storedVersion = localStorage.getItem('appVersion');
