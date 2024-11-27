@@ -47,8 +47,8 @@ const Login = () => {
 
                 // Lưu token vào localStorage
                 localStorage.setItem('token', token);
-                localStorage.setItem('user_id', roleId);
-                // console.log("Token đã lưu:", localStorage.getItem('token'));
+                localStorage.setItem('role_id', roleId);
+                
                 console.log("role id:", roleId);
                 
                 if (roleId === 1) {
