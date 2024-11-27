@@ -38,7 +38,9 @@ const ShowPet = ({ pets, setPets }) => {
 
     useEffect(() => {
         const fetchPets = async () => {
+            console.log('Cookies:', document.cookie);
             try {
+                
                 const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/pets', {
                     method: 'GET',
                     credentials: 'include' 
