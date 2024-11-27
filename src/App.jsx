@@ -26,17 +26,17 @@ import CancelPay from './pages/Cancel.jsx';
 
 function App() {
     const [cart, setCart] = useState([]);
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const appVersion = '1.1.1';
+    
+    // const appVersion = '1.1.1';
 
-    useEffect(() => {
-        const storedVersion = localStorage.getItem('appVersion');
-        if (storedVersion !== appVersion) {
-          localStorage.clear();
-          localStorage.setItem('appVersion', appVersion);
-          console.log('Đã xóa localStorage do cập nhật phiên bản ứng dụng.');
-        }
-      }, []);
+    // useEffect(() => {
+    //     const storedVersion = localStorage.getItem('appVersion');
+    //     if (storedVersion !== appVersion) {
+    //       localStorage.clear();
+    //       localStorage.setItem('appVersion', appVersion);
+    //       console.log('Đã xóa localStorage do cập nhật phiên bản ứng dụng.');
+    //     }
+    //   }, []);
 
     const fetchCart = async () => {
         try {
