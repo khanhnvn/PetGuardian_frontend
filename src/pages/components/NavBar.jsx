@@ -29,7 +29,8 @@ const Navbar = ({}) => {
     }, []);
 
     const handleLogout = async () => {
-        navigate('/login')
+        localStorage.removeItem('user');
+        navigate('/login');
         // try {
         //     const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/logout', { method: 'POST' });
         //     if (response.ok) {
