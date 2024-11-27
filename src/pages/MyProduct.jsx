@@ -38,7 +38,7 @@ const MyProduct = () => {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
-    const [images, setImages] = useState([]); // Sử dụng mảng để lưu trữ nhiều hình ảnh
+    const [image, setImage] = useState(null); // Sử dụng mảng để lưu trữ nhiều hình ảnh
     const [quantity, setQuantity] = useState('');
     const [editingProduct, setEditingProduct] = useState(null);
 
@@ -71,18 +71,18 @@ const MyProduct = () => {
         }
     };
 
-    const handleImageChange = (event) => {
-        setImages(Array.from(event.target.files)); // Chuyển đổi FileList sang mảng
-    };
-
     const handleAddProduct = () => {
         // Reset form và mở modal thêm sản phẩm
         setName('');
         setDescription('');
         setPrice('');
-        setImages([]);
+        setImage();
         setQuantity('');
         onAddOpen();
+    };
+
+    const handleImageChange = (event) => {
+        setImage(event.target.files[0]);
     };
 
     const handleEditProduct = (product) => {
@@ -91,7 +91,7 @@ const MyProduct = () => {
         setName(product.name);
         setDescription(product.description);
         setPrice(product.price);
-        setImages(product.images); // Giả sử API trả về danh sách hình ảnh trong product.images
+        setImage(product.image);
         setQuantity(product.quantity);
         onEditOpen();
     };
@@ -104,9 +104,7 @@ const MyProduct = () => {
         formData.append('name', name);
         formData.append('description', description);
         formData.append('price', price);
-        images.forEach((image) => {
-            formData.append('images[]', image); // Gửi nhiều ảnh với key "images[]"
-        });
+        formData.append('image', image); 
         formData.append('quantity', quantity);
 
         try {
@@ -158,9 +156,7 @@ const MyProduct = () => {
         formData.append('name', name);
         formData.append('description', description);
         formData.append('price', price);
-        images.forEach((image) => {
-            formData.append('images[]', image);
-        });
+        formData.append('image', image);
         formData.append('quantity', quantity);
 
         try {
@@ -266,7 +262,7 @@ const MyProduct = () => {
                                 overflow="hidden"
                                 p={4}
                             >
-                                <Image src={`/uploads/${product.images[0]}`} alt={product.name} h="200px" objectFit="cover" mb={2} />
+                                <Image src={`/uploads/${product.image}`} alt={product.name} h="200px" objectFit="cover" mb={2} />
 
                                 <Heading as="h3" size="md" mb={2}>
                                     {product.name}
@@ -319,7 +315,7 @@ const MyProduct = () => {
                                     </FormControl>
                                     <FormControl>
                                         <FormLabel>Images</FormLabel>
-                                        <Input type="file" multiple onChange={handleImageChange} />
+                                        <Input type="file" onChange={handleImageChange}/>
                                     </FormControl>
                                     <FormControl>
                                         <FormLabel>Quantity</FormLabel>
@@ -373,8 +369,8 @@ const MyProduct = () => {
                                         />
                                     </FormControl>
                                     <FormControl>
-                                        <FormLabel>Images</FormLabel>
-                                        <Input type="file" multiple onChange={handleImageChange} />
+                                        <FormLabel>Image</FormLabel>
+                                        <Input type="file" onChange={handleImageChange} />
                                     </FormControl>
                                     <FormControl>
                                         <FormLabel>Quantity</FormLabel>

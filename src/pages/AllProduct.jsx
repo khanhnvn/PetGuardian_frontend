@@ -36,7 +36,7 @@ const AllProduct = () => {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
-    const [images, setImages] = useState([]); // Sử dụng mảng để lưu trữ nhiều hình ảnh
+    const [image, setImage] = useState(null); // Sử dụng mảng để lưu trữ nhiều hình ảnh
     const [quantity, setQuantity] = useState('');
     const [editingProduct, setEditingProduct] = useState(null);
 
@@ -45,13 +45,14 @@ const AllProduct = () => {
     }, []);
 
     const fetchAllProducts = async () => {
+        const account_id = localStorage.getItem('account_id'); // Get account ID
+        const role_id = localStorage.getItem('role_id');
         try {
-            const account_id = localStorage.getItem('account_id'); // Get account ID
             const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/products', {
                 method: 'GET',
                 headers: {
                     'X-Account-ID': account_id , // Send account ID in header
-                    'X-Role-ID': '2'  // Send role ID for admin
+                    'X-Role-ID': role_id  // Send role ID for admin
                 }
             }); // API endpoint để lấy tất cả sản phẩm
             const data = await response.json();
@@ -70,7 +71,7 @@ const AllProduct = () => {
     };
 
     const handleImageChange = (event) => {
-        setImages(Array.from(event.target.files)); // Chuyển đổi FileList sang mảng
+        setImage(event.target.files[0]);
     };
 
 
@@ -81,7 +82,7 @@ const AllProduct = () => {
         setName(product.name);
         setDescription(product.description);
         setPrice(product.price);
-        setImages(product.images); // Giả sử API trả về danh sách hình ảnh trong product.images
+        setImage(product.image); // Giả sử API trả về danh sách hình ảnh trong product.images
         setQuantity(product.quantity);
         onEditOpen();
     };
@@ -93,17 +94,16 @@ const AllProduct = () => {
         formData.append('name', name);
         formData.append('description', description);
         formData.append('price', price);
-        images.forEach((image) => {
-            formData.append('images[]', image);
-        });
+        formData.append('image', image);
         formData.append('quantity', quantity);
-
+        const account_id = localStorage.getItem('account_id'); // Get account ID
+        const role_id = localStorage.getItem('role_id');
         try {
             const response = await fetch(`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/products/${editingProduct.id}`, {
                 method: 'PUT',
                 headers: {
                     'X-Account-ID': account_id,  // Send account ID in header
-                    'X-Role-ID': '2'  // Send role ID for admin
+                    'X-Role-ID': role_id  // Send role ID for admin
                 },
                 body: formData,
             });
@@ -140,12 +140,14 @@ const AllProduct = () => {
     };
 
     const handleDeleteProduct = async (productId) => {
+        const account_id = localStorage.getItem('account_id'); // Get account ID
+        const role_id = localStorage.getItem('role_id');
         try {
             const response = await fetch(`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/products/${productId}`, {
                 method: 'DELETE',
                 headers: {
                     'X-Account-ID': account_id,  // Send account ID in header
-                    'X-Role-ID': '2'  // Send role ID for admin
+                    'X-Role-ID': role_id  // Send role ID for admin
                 },
             });
 
@@ -197,7 +199,7 @@ const AllProduct = () => {
                                 overflow="hidden"
                                 p={4}
                             >
-                                <Image src={`/uploads/${product.images[0]}`} alt={product.name} h="200px" objectFit="cover" mb={2} />
+                                <Image src={`/uploads/${product.image}`} alt={product.name} h="200px" objectFit="cover" mb={2} />
 
                                 <Heading as="h3" size="md" mb={2}>
                                     {product.name}
@@ -252,8 +254,8 @@ const AllProduct = () => {
                                         />
                                     </FormControl>
                                     <FormControl>
-                                        <FormLabel>Images</FormLabel>
-                                        <Input type="file" multiple onChange={handleImageChange} />
+                                        <FormLabel>Image</FormLabel>
+                                        <Input type="file" onChange={handleImageChange}/>
                                     </FormControl>
                                     <FormControl>
                                         <FormLabel>Quantity</FormLabel>
