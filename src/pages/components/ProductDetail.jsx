@@ -121,7 +121,7 @@ const ProductDetail = ({ fetchCart, setCart }) => {
                     </Heading>
                     <HStack spacing={4}>
                         <Box w="40%">
-                            <Image src={product.image ? `/uploads/${product.image}` : `/uploads/default_image.jpg`} alt={product.name} h="300px" objectFit="cover" mb={2} />
+                            <Image src={`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/uploads/${product.image}`} alt={product.name} h="300px" objectFit="cover" mb={2} fallbackSrc="/uploads/default_image.jpg"/>
                         </Box>
                         <Box w="60%">
                             {/*<Text fontSize="sm" color="gray.500">

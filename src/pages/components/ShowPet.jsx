@@ -152,10 +152,11 @@ const ShowPet = ({ pets, setPets }) => {
                         display="flex" // Sử dụng Flexbox
                         flexDirection="column" // Sắp xếp element theo chiều dọc
                     >
-                        <Image src={`/uploads/${pet.pet_image}`} alt={pet.pet_name}
+                        <Image src={`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/uploads/${pet.pet_image}`} 
                                onClick={() => handlePetClick(pet)}
                                objectFit="cover" // Đảm bảo ảnh bao phủ toàn bộ container
                                flex={1} // Cho phép Image co giãn để chiếm không gian
+                               fallbackSrc="/uploads/default_pet_image.jpg"
                         />
                         <Flex p="6" alignItems="center" justifyContent="space-between"> {/* Sử dụng Flexbox */}
                             <Heading as="h3" size="md" mb={2}>

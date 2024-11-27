@@ -199,7 +199,7 @@ const AllProduct = () => {
                                 overflow="hidden"
                                 p={4}
                             >
-                                <Image src={product.image ? `/uploads/${product.image}` : `/uploads/default_image.jpg`} alt={product.name} h="200px" objectFit="cover" mb={2} />
+                                <Image src={`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/uploads/${product.image}`} alt={product.name} h="200px" objectFit="cover" mb={2} fallbackSrc="/uploads/default_image.jpg"/>
 
                                 <Heading as="h3" size="md" mb={2}>
                                     {product.name}
