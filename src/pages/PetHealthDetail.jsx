@@ -44,11 +44,7 @@ const PetHealthDetail = () => {
         const fetchPetDetails = async () => {
             setIsLoading(true); // Bật loading
             try {
-                const token = localStorage.getItem('token');
                 const response = await fetch(`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/pets/${petId}`, {
-                    headers: {
-                        'Authorization': 'Bearer ' + token // Thêm token vào header
-                    },
                     credentials: 'include'
                 });
 

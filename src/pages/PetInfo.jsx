@@ -5,6 +5,8 @@ import {
 import AddPet from "./components/AddPet.jsx";
 import ShowPet from "./components/ShowPet.jsx";
 import {useState} from "react";
+import Navbar from './components/NavBar.jsx'; // Import Navbar component
+import Footer from "./components/Footer.jsx";
 
 const PetInfo = ({ isLoggedIn }) => { // Nhận props isLoggedIn từ App.jsx
     if (!isLoggedIn) {
@@ -16,7 +18,7 @@ const PetInfo = ({ isLoggedIn }) => { // Nhận props isLoggedIn từ App.jsx
         <Box bg="#FFFCF8" minHeight="100vh"
              display="flex" flexDirection="column"
         > {/* Đặt màu nền cho trang */}
-
+            <Navbar />
             {/* Body */}
             <Box flex={1}>
                 <Container maxW="container.lg" p={4}>
@@ -24,7 +26,7 @@ const PetInfo = ({ isLoggedIn }) => { // Nhận props isLoggedIn từ App.jsx
                     <ShowPet pets={pets} setPets={setPets} /> {/* Component hiển thị danh sách thú cưng */}
                 </Container>
             </Box>
-
+            <Footer />
 
         </Box>
     );

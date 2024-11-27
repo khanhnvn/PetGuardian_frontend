@@ -23,14 +23,11 @@ import ProductDetail from './pages/components/ProductDetail.jsx';
 import CheckoutPage from './pages/CheckoutPage.jsx';
 import Success from './pages/Success.jsx';
 import CancelPay from './pages/Cancel.jsx';
-import Navbar from './pages/components/NavBar.jsx'; // Import Navbar component
-import Footer from "./pages/components/Footer.jsx";
 
 function App() {
     const [cart, setCart] = useState([]);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [userId, setUserId] = useState(null); 
-    const appVersion = '1.0.2';
+    const appVersion = '1.1.0';
 
     useEffect(() => {
         const storedVersion = localStorage.getItem('appVersion');
@@ -43,31 +40,10 @@ function App() {
 
     useEffect(() => {
         const checkLogin = async () => {
-            const token = localStorage.getItem('token'); 
-            if (token) {
+            const user = JSON.parse(localStorage.getItem('user')); // Lấy user từ localStorage
+            if (user) { // Kiểm tra xem user có tồn tại không
                 try {
-                    console.log("Token gửi đi:", token); 
-                    const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/check_login', { 
-                        method: 'GET',
-                        headers: {
-                            'Authorization': 'Bearer ' + token
-                        },
-                        credentials: 'include'
-                    });
-                    console.log("Response từ /api/check_login:", response); // In ra response object
-                    if (response.ok) {
-                        const data = await response.json(); 
-                        console.log("Data từ /api/check_login:", data); // In ra dữ liệu response
-
-                        setUserId(data.user_id);
-                        setIsLoggedIn(true);
-                        console.log("isLoggedIn:", isLoggedIn); // In giá trị của isLoggedIn
-                        console.log("userId:", userId); // In giá trị của userId
-                    } else {
-                        console.error('Lỗi khi checkLogin:', response.status);
-                        localStorage.removeItem('token'); 
-                        setIsLoggedIn(false);
-                    }
+                    setIsLoggedIn(true); // Nếu có, cập nhật isLoggedIn thành true
                 } catch (error) {
                     console.error('Lỗi khi kiểm tra đăng nhập:', error);
                     setIsLoggedIn(false);
@@ -79,18 +55,16 @@ function App() {
 
     const fetchCart = async () => {
         try {
-            const token = localStorage.getItem('token'); 
             const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/cart', {
-                headers: {
-                    'Authorization': 'Bearer ' + token
-                },
+
                 credentials: 'include'
             });
             if (!response.ok) {
-                throw new Error('Lỗi khi lấy giỏ hàng');
+                console.error('Lỗi khi lấy giỏ hàng:', response.status);
+            } else {
+                const data = await response.json();
+                setCart(data);
             }
-            const data = await response.json();
-            setCart(data);
         } catch (error) {
             console.error('Lỗi:', error);
         }

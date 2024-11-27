@@ -21,12 +21,10 @@ const Navbar = ({}) => {
     const [roleId, setRoleId] = useState(null);
 
     useEffect(() => {
-        const token = localStorage.getItem('token');
-        const storedRoleId = localStorage.getItem('role_id');
-
-        if (token && storedRoleId) {
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (user) {
             setIsLoggedIn(true);
-            setRoleId(parseInt(storedRoleId, 10));
+            setRoleId(user.role_id); // Lưu role_id vào state
         }
     }, []);
 

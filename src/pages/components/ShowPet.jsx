@@ -38,34 +38,18 @@ const ShowPet = ({ pets, setPets }) => {
     useEffect(() => {
         const fetchPets = async () => {
             try {
-                const token = localStorage.getItem('token');
-                console.log("Token gửi đi:", token);
+                // Không cần lấy token nữa
                 const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/pets', {
                     method: 'GET',
-                    headers: {
-                        'Authorization': 'Bearer ' + token // Thêm token vào header
-                    },
-                    credentials: 'include'
+                    credentials: 'include' // Giữ nguyên credentials để gửi cookie session
                 });
+
                 if (response.ok) {
                     const data = await response.json();
                     setPets(data);
                 } else {
-                    // Xử lý lỗi 401 Unauthorized
-                    if (response.status === 401) {
-                        // Ví dụ: chuyển hướng đến trang đăng nhập
-                        navigate('/login');
-                    } else {
-                        // Xử lý các lỗi khác
-                        const errorData = await response.json();
-                        toast({
-                            title: 'Lỗi!',
-                            description: errorData.message || 'Lỗi khi lấy thông tin thú cưng',
-                            status: 'error',
-                            duration: 3000,
-                            isClosable: true,
-                        });
-                    }
+                    // Xử lý lỗi (ví dụ: hiển thị thông báo lỗi)
+                    console.error('Lỗi khi lấy thông tin thú cưng:', response.status);
                 }
             } catch (error) {
                 console.error('Lỗi khi lấy thông tin thú cưng:', error);
@@ -94,13 +78,10 @@ const ShowPet = ({ pets, setPets }) => {
 
     const handleDeleteClick = async (petId) => {
         try {
-            const token = localStorage.getItem('token');
+            // Không cần gửi token nữa
             const response = await fetch(`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/pets/${petId}`, {
                 method: 'DELETE',
-                headers: {
-                    'Authorization': 'Bearer ' + token // Thêm token vào header
-                },
-                credentials: 'include'
+                credentials: 'include' // Giữ nguyên credentials
             });
 
             if (response.ok) {
@@ -110,7 +91,7 @@ const ShowPet = ({ pets, setPets }) => {
             } else {
                 // Xử lý lỗi
                 console.error('Lỗi khi xóa thú cưng');
-
+                // Xử lý lỗi 401 Unauthorized ở đây, ví dụ:
                 if (response.status === 401) {
                     // Chuyển hướng đến trang đăng nhập
                     navigate('/login');

@@ -29,17 +29,14 @@ const Login = () => {
                         'Content-Type': 'application/json',
                     },
                     credentials: 'include',
-                    body: JSON.stringify({ email: email, password: password
-                    }),
+                    body: JSON.stringify({ email: email, password: password }),
                 });
 
             if (response.ok) {
                 const data = await response.json();
-                const token = data.token;
                 const roleId = data.role_id;
 
                 console.log("Response data:", data); // In ra toàn bộ dữ liệu response
-                console.log("Token nhận được:", token); // In ra token nhận được
                 console.log("Role ID:", roleId); // In ra role ID
 
                 toast({
@@ -49,15 +46,14 @@ const Login = () => {
                     isClosable: true,
                 });
 
-                // Lưu token vào localStorage
-                localStorage.setItem('token', token);
-                console.log("Token đã lưu:", localStorage.getItem('token'));
-
-                localStorage.setItem('role_id', roleId);
+                localStorage.setItem('user', JSON.stringify({ 
+                    id: data.id, 
+                    email: email, 
+                    role_id: data.role_id
+                }));
                 console.log("role id đã tạo:", localStorage.getItem('role_id'));
                 
                 if (roleId === 1) {
-                    
                     console.log("Chuyển hướng đến /homepage");
                     navigate('/homepage');
                 } else if (roleId === 3) {
