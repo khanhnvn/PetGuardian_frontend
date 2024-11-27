@@ -6,12 +6,8 @@ const DeleteMedication = ({ petId, medicationId, setPet }) => {
 
     const handleDelete = async () => {
         try {
-            const token = localStorage.getItem('token');
             const response = await fetch(`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/pets/${petId}/medications/${medicationId}`, {
                 method: 'DELETE',
-                headers: {
-                    'Authorization': 'Bearer ' + token // Thêm token vào header
-                },
                 credentials: 'include'
             });
 
