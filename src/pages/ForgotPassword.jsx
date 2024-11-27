@@ -39,6 +39,7 @@ const ForgotPassword = () => {
                     duration: 3000,
                     isClosable: true,
                 });
+                localStorage.setItem('verificationCode', data.verification_code);
                 setShowVerificationInput(true); // Hiển thị input mã xác thực
             } else {
                 const errorData = await response.json();
