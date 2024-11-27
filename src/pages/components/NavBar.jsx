@@ -28,19 +28,20 @@ const Navbar = ({}) => {
         }
     }, []);
 
-    // const handleLogout = async () => {
-    //     try {
-    //         const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/logout', { method: 'POST' });
-    //         if (response.ok) {
-    //             localStorage.clear();
-    //             navigate('/login');
-    //         } else {
-    //             // Xử lý lỗi đăng xuất
-    //         }
-    //     } catch (error) {
-    //         console.error('Lỗi khi đăng xuất:', error);
-    //     }
-    // };
+    const handleLogout = async () => {
+        navigate('/login')
+        // try {
+        //     const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/logout', { method: 'POST' });
+        //     if (response.ok) {
+        //         localStorage.clear();
+        //         navigate('/login');
+        //     } else {
+        //         // Xử lý lỗi đăng xuất
+        //     }
+        // } catch (error) {
+        //     console.error('Lỗi khi đăng xuất:', error);
+        // }
+    };
 
     return (
         <Flex bg="white" p={4} alignItems="center" justifyContent="space-between">
