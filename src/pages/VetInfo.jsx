@@ -18,9 +18,14 @@ const VetInfo = () => {
 
   useEffect(() => {
     const fetchContacts = async () => {
+      const account_id = localStorage.getItem('account_id'); // Get account ID
       setIsLoading(true);
       try {
-        const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/veterinarian_contacts');
+        const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/veterinarian_contacts', {
+                    headers: {
+                        'X-Account-ID': account_id  // Send account ID in header
+                    }
+                });
         if (!response.ok) {
           throw new Error('Lỗi khi lấy danh sách liên lạc bác sĩ thú y');
         }

@@ -1,4 +1,4 @@
-//PetInfo.jsx
+// PetInfo.jsx
 import {
     Box, Container
 } from '@chakra-ui/react';

@@ -51,13 +51,14 @@ const PetEdit = ({ isOpen, onClose, pet, setPets, pets }) => {
         };
 
         try {
+            const account_id = localStorage.getItem('account_id'); // Get account ID
             const response = await fetch(`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/pets/${pet.id}`, {
                 method: 'PATCH',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'X-Account-ID': account_id
                 },
-                body: JSON.stringify(updatedPet),
-                credentials: 'include'
+                body: JSON.stringify(updatedPet)
             });
 
             if (response.ok) {

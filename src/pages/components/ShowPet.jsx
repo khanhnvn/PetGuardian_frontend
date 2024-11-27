@@ -38,11 +38,13 @@ const ShowPet = ({ pets, setPets }) => {
 
     useEffect(() => {
         const fetchPets = async () => {
-            console.log('Cookies:', document.cookie);
+            const account_id = localStorage.getItem('account_id'); // Get account ID
             try {
-                
                 const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/pets', {
-                    method: 'GET'
+                    method: 'GET',
+                    headers: {
+                        'X-Account-ID': account_id  // Send account ID in header
+                    }
                 });
 
                 if (response.ok) {
@@ -91,8 +93,12 @@ const ShowPet = ({ pets, setPets }) => {
 
     const handleDeleteClick = async (petId) => {
         try {
+            const account_id = localStorage.getItem('account_id'); // Get account ID
             const response = await fetch(`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/pets/${petId}`, {
-                method: 'DELETE'
+                method: 'DELETE',
+                headers: {
+                    'X-Account-ID': account_id  // Send account ID in header
+                }
             });
 
             if (response.ok) {

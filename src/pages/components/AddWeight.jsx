@@ -19,12 +19,14 @@ const AddWeight = ({ petId, setPet, onRefresh }) => {
         const formData = new FormData();
         formData.append('weight', weight);
         formData.append('date_recorded', dateRecorded);
-
+        const account_id = localStorage.getItem('account_id'); // Get account ID
         try {
             const response = await fetch(`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/pets/${petId}/weight`, {
                 method: 'POST',
                 body: formData,
-                credentials: 'include'
+                headers: {
+                    'X-Account-ID': account_id  // Send account ID in header
+                }
             });
 
             if (response.ok) {

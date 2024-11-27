@@ -1,4 +1,4 @@
-//Product.jsx
+// Product.jsx
 import { Box, Container, Heading } from '@chakra-ui/react';
 import Navbar from "./components/NavBar";
 import Footer from "./components/Footer";
@@ -6,7 +6,7 @@ import ProductGrid from "./components/ProductGrid";
 import useProduct from "./useProduct";
 
 const Product = ({ fetchCart, cart, setCart }) => {
-    const { products, handleAddToCart } = useProduct();
+    const { products , handleAddToCart } = useProduct();
 
     return (
         <Box bg="#FFFCF8" minHeight="100vh" display="flex" flexDirection="column">

@@ -1,3 +1,4 @@
+//MyService.jsx
 import { useState, useEffect } from 'react';
 import {
   Box,
@@ -43,8 +44,13 @@ const MyService = () => {
   }, []);
 
   const fetchMyServices = async () => {
+    const account_id = localStorage.getItem('account_id');
     try {
-      const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/services/my'); // API endpoint để lấy dịch vụ của customer
+      const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/services/my', {
+        headers: {
+            'X-Account-ID': account_id  // Send account ID in header
+        }
+      });
       const data = await response.json();
       setServices(data);
     } catch (error) {
@@ -80,10 +86,12 @@ const MyService = () => {
     event.preventDefault();
 
     try {
+      const account_id = localStorage.getItem('account_id');
       const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/services', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'X-Account-ID': account_id 
         },
         body: JSON.stringify({
           name: name,
@@ -125,12 +133,13 @@ const MyService = () => {
 
   const handleUpdateService = async (event) => {
     event.preventDefault();
-
+    const account_id = localStorage.getItem('account_id');
     try {
       const response = await fetch(`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/services/${editingService.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
+          'X-Account-ID': account_id
         },
         body: JSON.stringify({
           name: name,
@@ -171,9 +180,13 @@ const MyService = () => {
   };
 
   const handleDeleteService = async (serviceId) => {
+    const account_id = localStorage.getItem('account_id');
     try {
       const response = await fetch(`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/services/${serviceId}`, {
         method: 'DELETE',
+        headers: {
+          'X-Account-ID': account_id  // Send account ID in header
+      },
       });
 
       if (response.ok) {

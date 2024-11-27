@@ -46,7 +46,14 @@ const AllProduct = () => {
 
     const fetchAllProducts = async () => {
         try {
-            const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/products'); // API endpoint để lấy tất cả sản phẩm
+            const account_id = localStorage.getItem('account_id'); // Get account ID
+            const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/products', {
+                method: 'GET',
+                headers: {
+                    'X-Account-ID': account_id , // Send account ID in header
+                    'X-Role-ID': '2'  // Send role ID for admin
+                }
+            }); // API endpoint để lấy tất cả sản phẩm
             const data = await response.json();
             console.log(data);
             setProducts(data);
@@ -94,6 +101,10 @@ const AllProduct = () => {
         try {
             const response = await fetch(`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/products/${editingProduct.id}`, {
                 method: 'PUT',
+                headers: {
+                    'X-Account-ID': account_id,  // Send account ID in header
+                    'X-Role-ID': '2'  // Send role ID for admin
+                },
                 body: formData,
             });
 
@@ -132,6 +143,10 @@ const AllProduct = () => {
         try {
             const response = await fetch(`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/products/${productId}`, {
                 method: 'DELETE',
+                headers: {
+                    'X-Account-ID': account_id,  // Send account ID in header
+                    'X-Role-ID': '2'  // Send role ID for admin
+                },
             });
 
             if (response.ok) {

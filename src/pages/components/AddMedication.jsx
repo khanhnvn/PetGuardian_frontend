@@ -22,12 +22,15 @@ const AddMedication = ({ petId, setPet, onRefresh }) => {
         formData.append('medication_name', medicationName);
         formData.append('dosage', dosage); // Không cần chuyển đổi sang số vì dosage có thể là chuỗi
         formData.append('date_administered', dateAdministered);
+        const account_id = localStorage.getItem('account_id'); // Get account ID
 
         try {
             const response = await fetch(`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/pets/${petId}/medications`, {
                 method: 'POST',
                 body: formData,
-                credentials: 'include'
+                headers: {
+                    'X-Account-ID': account_id  // Send account ID in header
+                }
             });
 
             if (response.ok) {

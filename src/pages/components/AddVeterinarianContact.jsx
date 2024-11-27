@@ -30,12 +30,14 @@ const AddVeterinarianContact = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const account_id = localStorage.getItem('account_id'); // Get account ID
 
     try {
       const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/veterinarian_contacts', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'X-Account-ID': account_id
         },
         body: JSON.stringify({
           contact_name: contactName,

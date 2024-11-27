@@ -8,8 +8,13 @@ const useProduct = () => {
 
     useEffect(() => {
         const fetchProducts = async () => {
+            const account_id = localStorage.getItem('account_id'); // Get account ID
             try {
-                const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/products');
+                const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/products', {
+                    headers: {
+                        'X-Account-ID': account_id  // Send account ID in header
+                    }
+                });
                 const data = await response.json();
                 setProducts(data);
             } catch (error) {
@@ -28,11 +33,13 @@ const useProduct = () => {
     }, []);
 
     const handleAddToCart = async (productId, quantity) => {
+        const account_id = localStorage.getItem('account_id'); // Get account ID
         try {
             const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/cart/add', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'X-Account-ID': account_id 
                 },
                 body: JSON.stringify({ product_id: productId, quantity: quantity }),
             });

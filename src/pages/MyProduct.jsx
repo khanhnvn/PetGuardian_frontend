@@ -47,8 +47,13 @@ const MyProduct = () => {
     }, []);
 
     const fetchMyProducts = async () => {
+        const account_id = localStorage.getItem('account_id'); // Get account ID
         try {
-            const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/products/my'); // API endpoint để lấy sản phẩm của customer
+            const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/products/my', {
+                headers: {
+                    'X-Account-ID': account_id  // Send account ID in header
+                }
+            }); // API endpoint để lấy sản phẩm của customer
             const data = await response.json();
             console.log(data);
             setProducts(data);
@@ -92,6 +97,7 @@ const MyProduct = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         const formData = new FormData();
+        const account_id = localStorage.getItem('account_id'); // Get account ID
         formData.append('name', name);
         formData.append('description', description);
         formData.append('price', price);
@@ -103,6 +109,9 @@ const MyProduct = () => {
         try {
             const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/products', {
                 method: 'POST',
+                headers: {
+                    'X-Account-ID': account_id  // Send account ID in header
+                },
                 body: formData,
             });
 
@@ -140,6 +149,7 @@ const MyProduct = () => {
     const handleUpdateProduct = async (event) => {
         event.preventDefault();
         const formData = new FormData();
+        const account_id = localStorage.getItem('account_id'); // Get account ID
         formData.append('name', name);
         formData.append('description', description);
         formData.append('price', price);
@@ -151,6 +161,9 @@ const MyProduct = () => {
         try {
             const response = await fetch(`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/products/${editingProduct.id}`, {
                 method: 'PUT',
+                headers: {
+                    'X-Account-ID': account_id  // Send account ID in header
+                },
                 body: formData,
             });
 
@@ -186,9 +199,13 @@ const MyProduct = () => {
     };
 
     const handleDeleteProduct = async (productId) => {
+        const account_id = localStorage.getItem('account_id'); // Get account ID
         try {
             const response = await fetch(`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/products/${productId}`, {
                 method: 'DELETE',
+                headers: {
+                    'X-Account-ID': account_id  // Send account ID in header
+                },
             });
 
             if (response.ok) {

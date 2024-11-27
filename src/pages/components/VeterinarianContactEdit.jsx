@@ -44,10 +44,12 @@ const VeterinarianContactEdit = ({ isOpen, onClose, contact, setContacts, contac
     event.preventDefault();
 
     try {
+      const account_id = localStorage.getItem('account_id'); // Get account ID
       const response = await fetch(`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/veterinarian_contacts/${contact.id}`, {
         method: 'PUT', // Hoặc PATCH, tùy thuộc vào API của bạn
         headers: {
           'Content-Type': 'application/json',
+          'X-Account-ID': account_id
         },
         body: JSON.stringify({
           contact_name: contactName,

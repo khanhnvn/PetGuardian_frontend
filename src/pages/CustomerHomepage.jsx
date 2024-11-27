@@ -15,8 +15,14 @@ const CustomerHomePage = () => {
 
   useEffect(() => {
     const fetchRevenue = async () => {
+      const account_id = localStorage.getItem('account_id');
       try {
-        const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/customers/revenue');
+        const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/customers/revenue', {
+          method: 'GET',
+          headers: {
+              'X-Account-ID': account_id  // Send account ID in header
+          }
+        });
         if (!response.ok) {
           throw new Error('Lỗi khi lấy doanh số');
         }

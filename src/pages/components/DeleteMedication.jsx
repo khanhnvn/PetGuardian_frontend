@@ -5,10 +5,13 @@ const DeleteMedication = ({ petId, medicationId, setPet }) => {
     const toast = useToast();
 
     const handleDelete = async () => {
+        const account_id = localStorage.getItem('account_id'); // Get account ID
         try {
             const response = await fetch(`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/pets/${petId}/medications/${medicationId}`, {
                 method: 'DELETE',
-                credentials: 'include'
+                headers: {
+                    'X-Account-ID': account_id  // Send account ID in header
+                }
             });
 
             if (response.ok) {

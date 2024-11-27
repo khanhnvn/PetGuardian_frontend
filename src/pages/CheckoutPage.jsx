@@ -41,8 +41,14 @@ const [notes, setNotes] = useState('');
 useEffect(() => {
     // Gọi API để lấy thông tin giỏ hàng
     const fetchCart = async () => {
+
+    const account_id = localStorage.getItem('account_id'); // Get account ID
     try {
-        const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/cart');
+        const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/cart', {
+            headers: {
+                'X-Account-ID': account_id  // Send account ID in header
+            }
+        });
         if (!response.ok) {
             throw new Error('Lỗi khi lấy giỏ hàng');
         }
@@ -84,11 +90,13 @@ const totalPrice = useMemo(() => {
 }, [cart]);
 
 const handleCheckout = async () => {
+    const account_id = localStorage.getItem('account_id');
     try {
         const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/cart/checkout', {
             method: 'POST',
             headers: {
-            'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'X-Account-ID': account_id
             },
             body: JSON.stringify({
             cart_item_ids: selectedItems,

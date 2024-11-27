@@ -22,12 +22,15 @@ const AddAllergy = ({ petId, setPet, onRefresh }) => {
         formData.append('allergy', allergy);
         formData.append('cause', cause);
         formData.append('symptoms', symptoms);
+        const account_id = localStorage.getItem('account_id'); // Get account ID
 
         try {
             const response = await fetch(`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/pets/${petId}/allergies`, {
                 method: 'POST',
                 body: formData,
-                credentials: 'include'
+                headers: {
+                    'X-Account-ID': account_id  // Send account ID in header
+                }
             });
 
             if (response.ok) {

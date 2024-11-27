@@ -32,8 +32,13 @@ const Cart = () => {
     }, []);
 
     const fetchCart = async () => {
+        const account_id = localStorage.getItem('account_id'); // Get account ID
         try {
-            const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/cart');
+            const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/cart', {
+                headers: {
+                    'X-Account-ID': account_id  // Send account ID in header
+                }
+            });
             if (!response.ok) {
                 throw new Error('Lỗi khi lấy giỏ hàng');
             }
@@ -52,9 +57,13 @@ const Cart = () => {
     };
 
     const handleRemoveFromCart = async (cartItemId) => {
+        const account_id = localStorage.getItem('account_id'); // Get account ID
         try {
             const response = await fetch(`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/cart/remove/${cartItemId}`, {
                 method: 'DELETE',
+                headers: {
+                    'X-Account-ID': account_id  // Send account ID in header
+                },
             });
             if (response.ok) {
                 fetchCart();
@@ -87,11 +96,13 @@ const Cart = () => {
     };
 
     const handleQuantityChange = async (cartItemId, newQuantity) => {
+        const account_id = localStorage.getItem('account_id'); // Get account ID
         try {
             const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/cart/update', {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
+                    'X-Account-ID': account_id  // Send account ID in header
                 },
                 body: JSON.stringify({ cart_item_id: cartItemId, quantity: newQuantity }),
             });

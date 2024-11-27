@@ -1,3 +1,4 @@
+//Service.jsx
 import { useState, useEffect } from 'react';
 import {
   Box,
@@ -20,8 +21,13 @@ const Service = () => {
   }, []);
 
   const fetchServices = async () => {
+    const account_id = localStorage.getItem('account_id');
     try {
-      const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/services'); // API endpoint để lấy tất cả dịch vụ
+      const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/services', {
+        headers: {
+            'X-Account-ID': account_id  // Send account ID in header
+        }
+      });
       const data = await response.json();
       setServices(data);
     } catch (error) {

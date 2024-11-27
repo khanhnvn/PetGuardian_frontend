@@ -11,7 +11,7 @@ import VetInfo from "./pages/VetInfo.jsx";
 import PetHealthDetail from "./pages/PetHealthDetail.jsx";
 import ForgotPassword from './pages/ForgotPassword.jsx';
 import ChangePassword from './pages/ChangePassword.jsx';
-import CustomerHomePage from './pages/CustomerHomePage.jsx'; 
+import CustomerHomePage from './pages/CustomerHomepage.jsx'; 
 import AdminHomePage from './pages/AdminHomepage.jsx'; 
 import MyProduct from './pages/MyProduct.jsx';
 import MyService from './pages/MyService.jsx';
@@ -39,8 +39,14 @@ function App() {
     //   }, []);
 
     const fetchCart = async () => {
+        const account_id = localStorage.getItem('account_id'); // Get account ID
         try {
-            const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/cart', {method: 'GET'});
+            const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/cart', {
+                method: 'GET',
+                headers: {
+                    'X-Account-ID': account_id  // Send account ID in header
+                }
+            });
             if (!response.ok) {
                 console.error('Lỗi khi lấy giỏ hàng:', response.status);
             } else {

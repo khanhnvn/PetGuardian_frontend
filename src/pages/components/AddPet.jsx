@@ -45,11 +45,15 @@ const AddPet = () => {
         formData.append('pet_color', petColor);
         formData.append('pet_image', petImage);
 
+        const account_id = localStorage.getItem('account_id');
+
         try {
             const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/pets', {
                 method: 'POST',
+                headers: {
+                    'X-Account-ID': account_id 
+                },
                 body: formData,
-                credentials: 'include'
             });
 
             if (response.ok) {

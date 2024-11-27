@@ -21,27 +21,19 @@ const Navbar = ({}) => {
     const [roleId, setRoleId] = useState(null);
 
     useEffect(() => {
-        const user = JSON.parse(localStorage.getItem('user'));
-        if (user) {
+        const account_id = localStorage.getItem('account_id'); // Get account_id from localStorage
+        const role_id = localStorage.getItem('role_id'); // Get role_id from localStorage
+
+        if (account_id && role_id) {
             setIsLoggedIn(true);
-            setRoleId(user.role_id); // Lưu role_id vào state
+            setRoleId(parseInt(role_id, 10)); // Parse role_id to an integer
         }
     }, []);
 
     const handleLogout = async () => {
-        localStorage.removeItem('user');
+        localStorage.removeItem('account_id'); // Remove account_id from localStorage
+        localStorage.removeItem('role_id'); // Remove role_id from localStorage
         navigate('/login');
-        // try {
-        //     const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/logout', { method: 'POST' });
-        //     if (response.ok) {
-        //         localStorage.clear();
-        //         navigate('/login');
-        //     } else {
-        //         // Xử lý lỗi đăng xuất
-        //     }
-        // } catch (error) {
-        //     console.error('Lỗi khi đăng xuất:', error);
-        // }
     };
 
     return (

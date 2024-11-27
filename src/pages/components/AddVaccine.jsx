@@ -21,12 +21,15 @@ const AddVaccine = ({ petId, setPet, onRefresh }) => {
         formData.append('vaccine_name', vaccineName);
         formData.append('dosage', parseInt(dosage));
         formData.append('date_administered', dateAdministered);
+        const account_id = localStorage.getItem('account_id'); // Get account ID
 
         try {
             const response = await fetch(`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/pets/${petId}/vaccines`, {
                 method: 'POST',
                 body: formData,
-                credentials: 'include'
+                headers: {
+                    'X-Account-ID': account_id  // Send account ID in header
+                }
             });
 
             if (response.ok) {

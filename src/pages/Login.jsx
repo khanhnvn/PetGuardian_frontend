@@ -41,11 +41,9 @@ const Login = () => {
                     isClosable: true,
                 });
 
-                localStorage.setItem('user', JSON.stringify({
-                    id: data.id,
-                    email: email,
-                    role_id: data.role_id
-                }));
+                // Store account_id and role_id in localStorage
+                localStorage.setItem('account_id', data.id); 
+                localStorage.setItem('role_id', data.role_id);
 
                 // Chuyển hướng dựa trên role_id
                 switch (data.role_id) {

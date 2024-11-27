@@ -1,4 +1,4 @@
-//ProductCard.jsx
+// ProductCard.jsx
 import { useState } from 'react';
 import {
     Box,
