@@ -37,15 +37,18 @@ function App() {
                 try {
                     console.log("Token gửi đi:", token); 
                     const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/check_login', { 
+                        method: 'GET',
                         headers: {
                             'Authorization': 'Bearer ' + token
                         },
                         credentials: 'include'
                     });
                     if (response.ok) {
-                        const data = await response.json(); // Lấy dữ liệu từ response
-                        setUserId(data.user_id); // Lưu userId vào state
+                        const data = await response.json(); 
+                        setUserId(data.user_id);
                         setIsLoggedIn(true);
+                        console.log("isLoggedIn:", isLoggedIn); // In giá trị của isLoggedIn
+                        console.log("userId:", userId); // In giá trị của userId
                     } else {
                         localStorage.removeItem('token'); 
                         setIsLoggedIn(false);
