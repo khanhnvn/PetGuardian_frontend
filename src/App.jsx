@@ -64,6 +64,7 @@ function App() {
                         console.log("isLoggedIn:", isLoggedIn); // In giá trị của isLoggedIn
                         console.log("userId:", userId); // In giá trị của userId
                     } else {
+                        console.error('Lỗi khi checkLogin:', response.status);
                         localStorage.removeItem('token'); 
                         setIsLoggedIn(false);
                     }
@@ -97,7 +98,6 @@ function App() {
 
     return (
         <BrowserRouter basename="/">
-            {isLoggedIn && <Navbar/>} {/* Sử dụng Navbar component */}
             <Routes>
                 <Route path="/" element={<Navigate to="/login" />} /> 
                 <Route path="/register" element={<Register />} />
@@ -125,7 +125,6 @@ function App() {
                 <Route path="/success" element={<Success />} /> 
                 <Route path="/cancel" element={<CancelPay />} /> 
             </Routes>
-            {isLoggedIn && <Footer />}
         </BrowserRouter>
     );
 }
