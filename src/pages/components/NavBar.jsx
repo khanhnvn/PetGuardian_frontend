@@ -60,9 +60,9 @@ const Navbar = ({}) => {
                                 <NavLink to="/product">
                                     <Tab _selected={{ color: 'blue.500' }}>Product</Tab>
                                 </NavLink>
-                                <NavLink to="/service">
+                                {/* <NavLink to="/service">
                                     <Tab _selected={{ color: 'blue.500' }}>Service</Tab>
-                                </NavLink>
+                                </NavLink> */}
                                 {/*<NavLink to="/reminder">
                                     <Tab _selected={{ color: 'blue.500' }}>Reminder</Tab>
                                 </NavLink>*/}
@@ -82,15 +82,15 @@ const Navbar = ({}) => {
                                 <NavLink to="/product">
                                     <Tab _selected={{ color: 'blue.500' }}>Product</Tab>
                                 </NavLink>
-                                <NavLink to="/service">
+                                {/* <NavLink to="/service">
                                     <Tab _selected={{ color: 'blue.500' }}>Service</Tab>
-                                </NavLink>
+                                </NavLink> */}
                                 <NavLink to="/myproduct">
                                     <Tab _selected={{ color: 'blue.500' }}>My Product</Tab>
                                 </NavLink>
-                                <NavLink to="/myservice">
+                                {/* <NavLink to="/myservice">
                                     <Tab _selected={{ color: 'blue.500' }}>My Service</Tab>
-                                </NavLink>
+                                </NavLink> */}
                             </TabList>
                         </Tabs>
                     )}
@@ -110,9 +110,9 @@ const Navbar = ({}) => {
                                 <NavLink to="/admin/allproducts">
                                     <Tab _selected={{ color: 'blue.500' }}>All Products</Tab>
                                 </NavLink>
-                                <NavLink to="/admin/allservices">
+                                {/* <NavLink to="/admin/allservices">
                                     <Tab _selected={{ color: 'blue.500' }}>All Services</Tab>
-                                </NavLink>
+                                </NavLink> */}
                             </TabList>
                         </Tabs>
                     )}

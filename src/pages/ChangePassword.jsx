@@ -55,6 +55,7 @@ const ChangePassword = () => {
                     isClosable: true,
                 });
                 navigate('/login');
+                localStorage.removeItem('verificationCode'); 
             } else {
                 const errorData = await response.json();
                 toast({

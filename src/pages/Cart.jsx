@@ -161,7 +161,7 @@ const Cart = () => {
                                 <Box key={item.id} borderWidth="1px" borderRadius="lg" p={4}>
                                     <HStack>
                                         {item.images && item.images.length > 0 ? (
-                                            <Image src={`/uploads/${item.images[0]}`} alt={item.name} boxSize="100px" objectFit="cover" />
+                                            <Image src={`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/uploads/${product.image}`} alt={item.name} boxSize="100px" objectFit="cover" />
                                         ) : (
                                             <Image src={`/uploads/default_image.jpg`} alt="Default Image" boxSize="100px" objectFit="cover" />
                                         )}
