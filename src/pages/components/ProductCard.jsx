@@ -27,7 +27,7 @@ const ProductCard = ({ product, onAddToCart, fetchCart, setCart }) => {
     return (
         <Link to={`/product/${product.id}`}> {/* Liên kết đến trang chi tiết sản phẩm */}
             <Box borderWidth="1px" borderRadius="lg" overflow="hidden" p={4} cursor="pointer">
-                <Image src={product.image ? `/uploads/${product.image}` : `/uploads/default_image.jpg`}
+                <Image src={`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/uploads/${product.image}`} 
                     alt={product.name} h="200px" objectFit="cover" mb={2} 
                 />
                 <Heading as="h3" size="md" mb={2}>

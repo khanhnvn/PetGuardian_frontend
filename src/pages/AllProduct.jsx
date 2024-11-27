@@ -52,7 +52,7 @@ const AllProduct = () => {
                 method: 'GET',
                 headers: {
                     'X-Account-ID': account_id , // Send account ID in header
-                    'X-Role-ID': role_id  // Send role ID for admin
+                    'X-Role-ID': role_id  
                 }
             }); // API endpoint để lấy tất cả sản phẩm
             const data = await response.json();
@@ -147,7 +147,7 @@ const AllProduct = () => {
                 method: 'DELETE',
                 headers: {
                     'X-Account-ID': account_id,  // Send account ID in header
-                    'X-Role-ID': role_id  // Send role ID for admin
+                    'X-Role-ID': role_id  
                 },
             });
 
