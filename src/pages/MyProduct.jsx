@@ -86,11 +86,12 @@ const MyProduct = () => {
     };
 
     const handleEditProduct = (product) => {
+        const numericPrice = product.price.replace(/[^0-9.-]+/g, ""); // Remove non-numeric chars
         // Điền thông tin sản phẩm vào form và mở modal sửa sản phẩm
         setEditingProduct(product);
         setName(product.name);
         setDescription(product.description);
-        setPrice(product.price);
+        setPrice(numericPrice); 
         setImage(product.image);
         setQuantity(product.quantity);
         onEditOpen();
