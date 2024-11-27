@@ -47,11 +47,12 @@ const Login = () => {
 
                 // Lưu token vào localStorage
                 localStorage.setItem('token', token);
+                localStorage.setItem('user_id', roleId);
                 // console.log("Token đã lưu:", localStorage.getItem('token'));
                 console.log("role id:", roleId);
                 
                 if (roleId === 1) {
-                    console.log("role id:", roleId);
+                    console.log("role id:", localStorage.getItem('role_id'));
                     navigate('/homepage');
                 } else if (roleId === 3) {
                     navigate('/customerhomepage');

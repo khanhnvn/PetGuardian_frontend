@@ -83,19 +83,20 @@ function App() {
 
     return (
         <BrowserRouter basename="/">
-            {isLoggedIn && <Navbar userId={userId} />} {/* Sử dụng Navbar component */}
+            {isLoggedIn && <Navbar/>} {/* Sử dụng Navbar component */}
             <Routes>
                 <Route path="/" element={<Navigate to="/login" />} /> 
                 <Route path="/register" element={<Register />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/forgotpassword" element={<ForgotPassword />} />
+                <Route path="/changepassword" element={<ChangePassword />} />
+
                 <Route path="/homepage" element={isLoggedIn ? <HomePage /> : <Navigate to="/login" />} />
                 <Route path="/pet" element={isLoggedIn ? <PetInfo /> : <Navigate to="/login" />} />
                 <Route path="/reminder" element={isLoggedIn ? <Reminder /> : <Navigate to="/login" />} />
                 <Route path="/vet" element={isLoggedIn ? <VetInfo /> : <Navigate to="/login" />} />
                 <Route path="/myservice" element={isLoggedIn ? <MyService /> : <Navigate to="/login" />} />
                 <Route path="/service" element={isLoggedIn ? <Service /> : <Navigate to="/login" />} />
-                <Route path="/forgotpassword" element={<ForgotPassword />} />
-                <Route path="/changepassword" element={<ChangePassword />} />
                 <Route path="/pet/:petId/health" element={isLoggedIn ? <PetHealthDetail /> : <Navigate to="/login" />} />
                 <Route path="/customerhomepage" element={isLoggedIn ? <CustomerHomePage /> : <Navigate to="/login" />} />
                 <Route path="/adminhomepage" element={isLoggedIn ? <AdminHomePage /> : <Navigate to="/login" />} />
@@ -106,6 +107,7 @@ function App() {
                 <Route path="/product" element={isLoggedIn ? <Product fetchCart={fetchCart} cart={cart} setCart={setCart} /> : <Navigate to="/login" />} /> 
                 <Route path="/product/:productId" element={isLoggedIn ? <ProductDetail fetchCart={fetchCart} setCart={setCart} /> : <Navigate to="/login" />} />
                 <Route path="/checkout" element={isLoggedIn ? <CheckoutPage fetchCart={fetchCart} cart={cart} setCart={setCart} /> : <Navigate to="/login" />} /> 
+                
                 <Route path="/success" element={<Success />} /> 
                 <Route path="/cancel" element={<CancelPay />} /> 
             </Routes>

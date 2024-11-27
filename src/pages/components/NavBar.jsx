@@ -15,23 +15,33 @@ import {
 } from '@chakra-ui/react';
 import { NavLink, useNavigate } from 'react-router-dom';
 
-const Navbar = () => {
+const Navbar = ({}) => {
     const navigate = useNavigate();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [roleId, setRoleId] = useState(null); // Thêm state để lưu role_id
+    const [roleId, setRoleId] = useState(null);
 
     useEffect(() => {
-        // Kiểm tra trạng thái đăng nhập và lấy role_id (ví dụ: từ localStorage)
-        const user = JSON.parse(localStorage.getItem('user'));
-        if (user) {
+        const token = localStorage.getItem('token');
+        const storedRoleId = localStorage.getItem('role_id');
+
+        if (token && storedRoleId) {
             setIsLoggedIn(true);
-            setRoleId(user.role_id); // Lưu role_id vào state
+            setRoleId(parseInt(storedRoleId, 10));
         }
     }, []);
 
-    const handleLogout = () => {
-        localStorage.removeItem('user');
-        navigate('/login');
+    const handleLogout = async () => {
+        try {
+            const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com//api/logout', { method: 'POST' });
+            if (response.ok) {
+                localStorage.clear();
+                navigate('/login');
+            } else {
+                // Xử lý lỗi đăng xuất
+            }
+        } catch (error) {
+            console.error('Lỗi khi đăng xuất:', error);
+        }
     };
 
     return (
