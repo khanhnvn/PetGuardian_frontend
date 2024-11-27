@@ -27,7 +27,7 @@ import CancelPay from './pages/Cancel.jsx';
 function App() {
     const [cart, setCart] = useState([]);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const appVersion = '1.1.0';
+    const appVersion = '1.1.1';
 
     useEffect(() => {
         const storedVersion = localStorage.getItem('appVersion');

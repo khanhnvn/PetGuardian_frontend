@@ -13,13 +13,14 @@ import {
     ModalCloseButton,
     ModalBody,
     useDisclosure,
-    VStack, Flex, HStack, IconButton,
+    VStack, Flex, HStack, IconButton, useToast,
 } from '@chakra-ui/react';
 import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
 import PetEdit from "./PetEdit.jsx";
 import { useNavigate } from 'react-router-dom';
 
 const ShowPet = ({ pets, setPets }) => {
+    const toast = useToast();
     const navigate = useNavigate();
     const {
         isOpen: isInfoOpen,
@@ -38,10 +39,9 @@ const ShowPet = ({ pets, setPets }) => {
     useEffect(() => {
         const fetchPets = async () => {
             try {
-                // Không cần lấy token nữa
                 const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/pets', {
                     method: 'GET',
-                    credentials: 'include' // Giữ nguyên credentials để gửi cookie session
+                    credentials: 'include' 
                 });
 
                 if (response.ok) {
@@ -50,6 +50,18 @@ const ShowPet = ({ pets, setPets }) => {
                 } else {
                     // Xử lý lỗi (ví dụ: hiển thị thông báo lỗi)
                     console.error('Lỗi khi lấy thông tin thú cưng:', response.status);
+                    if (response.status === 401) {
+                        // Chuyển hướng đến trang đăng nhập
+                        navigate('/login');
+                    } else {
+                        toast({
+                            title: 'Lỗi!',
+                            description: 'Lỗi khi lấy thông tin thú cưng',
+                            status: 'error',
+                            duration: 3000,
+                            isClosable: true,
+                        });
+                    }
                 }
             } catch (error) {
                 console.error('Lỗi khi lấy thông tin thú cưng:', error);
@@ -78,10 +90,9 @@ const ShowPet = ({ pets, setPets }) => {
 
     const handleDeleteClick = async (petId) => {
         try {
-            // Không cần gửi token nữa
             const response = await fetch(`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/pets/${petId}`, {
                 method: 'DELETE',
-                credentials: 'include' // Giữ nguyên credentials
+                credentials: 'include' 
             });
 
             if (response.ok) {

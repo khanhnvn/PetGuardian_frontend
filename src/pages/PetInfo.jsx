@@ -8,7 +8,7 @@ import {useState} from "react";
 import Navbar from './components/NavBar.jsx'; // Import Navbar component
 import Footer from "./components/Footer.jsx";
 
-const PetInfo = ({}) => { // Nhận props isLoggedIn từ App.jsx
+const PetInfo = ({}) => { 
     const [pets, setPets] = useState([]);
     return (
         <Box bg="#FFFCF8" minHeight="100vh"
