@@ -51,7 +51,7 @@ const AddPet = () => {
             const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/pets', {
                 method: 'POST',
                 headers: {
-                    'X-Account-ID': account_id 
+                    'X-Account-ID': account_id  // Send account ID in header
                 },
                 body: formData,
             });

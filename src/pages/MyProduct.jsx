@@ -48,10 +48,12 @@ const MyProduct = () => {
 
     const fetchMyProducts = async () => {
         const account_id = localStorage.getItem('account_id'); // Get account ID
+        const role_id = localStorage.getItem('role_id');
         try {
             const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/products/my', {
                 headers: {
-                    'X-Account-ID': account_id  // Send account ID in header
+                    'X-Account-ID': account_id,  // Send account ID in header
+                    'X-Role-ID' : role_id
                 }
             }); // API endpoint để lấy sản phẩm của customer
             const data = await response.json();
@@ -98,6 +100,7 @@ const MyProduct = () => {
         event.preventDefault();
         const formData = new FormData();
         const account_id = localStorage.getItem('account_id'); // Get account ID
+        const role_id = localStorage.getItem('role_id');
         formData.append('name', name);
         formData.append('description', description);
         formData.append('price', price);
@@ -110,7 +113,8 @@ const MyProduct = () => {
             const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/products', {
                 method: 'POST',
                 headers: {
-                    'X-Account-ID': account_id  // Send account ID in header
+                    'X-Account-ID': account_id,  // Send account ID in header
+                    'X-Role-ID' : role_id
                 },
                 body: formData,
             });
@@ -150,6 +154,7 @@ const MyProduct = () => {
         event.preventDefault();
         const formData = new FormData();
         const account_id = localStorage.getItem('account_id'); // Get account ID
+        const role_id = localStorage.getItem('role_id');
         formData.append('name', name);
         formData.append('description', description);
         formData.append('price', price);
@@ -162,7 +167,8 @@ const MyProduct = () => {
             const response = await fetch(`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/products/${editingProduct.id}`, {
                 method: 'PUT',
                 headers: {
-                    'X-Account-ID': account_id  // Send account ID in header
+                    'X-Account-ID': account_id,  // Send account ID in header
+                    'X-Role-ID' : role_id
                 },
                 body: formData,
             });
@@ -200,11 +206,13 @@ const MyProduct = () => {
 
     const handleDeleteProduct = async (productId) => {
         const account_id = localStorage.getItem('account_id'); // Get account ID
+        const role_id = localStorage.getItem('role_id');
         try {
             const response = await fetch(`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/products/${productId}`, {
                 method: 'DELETE',
                 headers: {
-                    'X-Account-ID': account_id  // Send account ID in header
+                    'X-Account-ID': account_id,  // Send account ID in header
+                    'X-Role-ID' : role_id
                 },
             });
 
