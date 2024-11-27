@@ -28,16 +28,11 @@ const Login = () => {
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    credentials: 'include',
                     body: JSON.stringify({ email: email, password: password }),
                 });
 
-            if (response.ok) {
+            if (response.status === 200) {
                 const data = await response.json();
-                const roleId = data.role_id;
-
-                console.log("Response data:", data); // In ra toàn bộ dữ liệu response
-                console.log("Role ID:", roleId); // In ra role ID
 
                 toast({
                     title: 'Đăng nhập thành công!',
@@ -46,30 +41,43 @@ const Login = () => {
                     isClosable: true,
                 });
 
-                localStorage.setItem('user', JSON.stringify({ 
-                    id: data.id, 
-                    email: email, 
+                localStorage.setItem('user', JSON.stringify({
+                    id: data.id,
+                    email: email,
                     role_id: data.role_id
                 }));
 
-                const user = JSON.parse(localStorage.getItem('user'));
-                console.log("role id đã tạo:", user.role_id); 
-                
-                if (roleId === 1) {
-                    console.log("Chuyển hướng đến /homepage");
-                    navigate('/homepage');
-                } else if (roleId === 3) {
-                    navigate('/customerhomepage');
-                } else if (roleId === 2) {
-                    navigate('/adminhomepage')
+                // Chuyển hướng dựa trên role_id
+                switch (data.role_id) {
+                    case 1:
+                        navigate('/homepage');
+                        break;
+                    case 3:
+                        navigate('/customerhomepage');
+                        break;
+                    case 2:
+                        navigate('/adminhomepage');
+                        break;
+                    default:
+                        // Xử lý trường hợp role_id không hợp lệ
+                        break;
                 }
 
-            } else {
-                // Xử lý lỗi đăng nhập, ví dụ: sai email hoặc mật khẩu
+            } else if (response.status === 401) {
+                // Xử lý lỗi sai email hoặc mật khẩu
                 const errorData = await response.json();
                 toast({
                     title: 'Lỗi đăng nhập!',
                     description: errorData.message || 'Email hoặc mật khẩu không đúng.',
+                    status: 'error',
+                    duration: 3000,
+                    isClosable: true,
+                });
+            } else {
+                // Xử lý các lỗi khác
+                toast({
+                    title: 'Lỗi!',
+                    description: 'Đã có lỗi xảy ra.',
                     status: 'error',
                     duration: 3000,
                     isClosable: true,

@@ -42,8 +42,7 @@ const ShowPet = ({ pets, setPets }) => {
             try {
                 
                 const response = await fetch('https://aqueous-island-09657-d7724403d9f8.herokuapp.com/api/pets', {
-                    method: 'GET',
-                    credentials: 'include' 
+                    method: 'GET'
                 });
 
                 if (response.ok) {

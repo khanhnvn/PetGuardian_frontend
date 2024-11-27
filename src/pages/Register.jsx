@@ -38,8 +38,7 @@ const Register = () => {
                     password: password, 
                     email: email, 
                     role_id: roleId 
-                }),
-                credentials: 'include'
+                })
             });
 
             const data = await response.json();
