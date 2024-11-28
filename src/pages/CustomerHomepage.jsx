@@ -63,7 +63,7 @@ const CustomerHomePage = () => {
                                 <Thead>
                                     <Tr>
                                         <Th>Tên món hàng</Th>
-                                        <Th>Ngày, giờ mua</Th>
+                                        <Th>Ngày mua</Th>
                                         <Th>Số lượng</Th>
                                         <Th>Đơn giá</Th>
                                     </Tr>
