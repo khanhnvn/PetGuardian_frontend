@@ -35,7 +35,8 @@ function Transactions({ transactions, onTransactionClick }) {
                         <Td>{transaction.id}</Td>
                         <Td>{transaction.user_id}</Td>
                         <Td>{parseInt(transaction.total_amount, 10).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</Td>
-                        <Td>{transaction.order_date}</Td>
+                        {/* <Td>{transaction.order_date}</Td> */}
+                        <Td>{new Date(transaction.order_date).toLocaleDateString()}</Td>
                         <Td>
                             <Button colorScheme="blue" onClick={() => handleViewTransaction(transaction.id)}>Xem</Button>
                         </Td>

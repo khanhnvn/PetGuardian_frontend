@@ -76,7 +76,7 @@ const Navbar = ({}) => {
                         <Tabs variant="unstyled">
                             <TabList>
                                 <NavLink to="/customerhomepage">
-                                    <Tab _selected={{ color: 'blue.500' }}>Home</Tab>
+                                    <Tab _selected={{ color: 'blue.500' }}>Dashboard</Tab>
                                 </NavLink>
                                 {/* Thêm các tab khác cho customer */}
                                 <NavLink to="/product">
@@ -98,7 +98,7 @@ const Navbar = ({}) => {
                         <Tabs variant="unstyled">
                             <TabList>
                                 <NavLink to="/adminhomepage">
-                                    <Tab _selected={{ color: 'blue.500' }}>Home</Tab>
+                                    <Tab _selected={{ color: 'blue.500' }}>Dashboard</Tab>
                                 </NavLink>
                                 {/* Thêm các tab khác cho admin */}
                                 <NavLink to="/admin/users">
