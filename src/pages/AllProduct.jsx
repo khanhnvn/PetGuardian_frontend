@@ -109,6 +109,7 @@ const AllProduct = () => {
             });
 
             if (response.ok) {
+                fetchAllProducts();
                 onEditClose(); // Đóng modal sửa sản phẩm
                 toast({
                     title: 'Cập nhật sản phẩm thành công!',
@@ -151,6 +152,7 @@ const AllProduct = () => {
             });
 
             if (response.ok) {
+                fetchAllProducts();
                 toast({
                     title: 'Xóa sản phẩm thành công!',
                     status: 'success',

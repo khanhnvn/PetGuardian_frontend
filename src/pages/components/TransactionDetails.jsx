@@ -33,7 +33,7 @@ return (
                 <Tr>
                 <Th>Sản phẩm</Th>
                 <Th>Số lượng</Th>
-                <Th>Giá</Th>
+                <Th>Đơn Giá</Th>
                 </Tr>
             </Thead>
             <Tbody>
