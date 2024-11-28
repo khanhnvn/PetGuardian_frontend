@@ -74,7 +74,7 @@ const CustomerHomePage = () => {
                                             <Td>{item.name}</Td>
                                             <Td>{item.order_date}</Td>
                                             <Td>{item.quantity}</Td>
-                                            <Td>{item.price}</Td>
+											<Td>{parseInt(item.price, 10).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</Td>
                                         </Tr>
                                     ))}
                                 </Tbody>
@@ -82,7 +82,7 @@ const CustomerHomePage = () => {
                         ) : (
                             <Text>Không có lịch sử bán hàng.</Text> // Display a message if no sales history
                         )}
-						
+
                     </VStack>
                 </Container>
             </Box>
