@@ -69,7 +69,7 @@ const CustomerHomePage = () => {
                                     </Tr>
                                 </Thead>
                                 <Tbody>
-                                    {salesHistory.map((item) => (
+                                    {salesHistory.slice().reverse().map((item) => (
                                         <Tr key={item.id}> {/* Make sure each item has a unique 'id' */}
                                             <Td>{item.name}</Td>
                                             <Td>{item.order_date}</Td>
