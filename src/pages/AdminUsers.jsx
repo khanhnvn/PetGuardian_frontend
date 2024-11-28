@@ -81,7 +81,7 @@ const AdminUsers = () => {
                             </Tr>
                         </Thead>
                         <Tbody>
-                            {users.map((user) => (
+                            {users.slice().reverse().map((user) => (
                                 <Tr key={user.id}>
                                     <Td>{user.id}</Td>
                                     <Td>{user.username}</Td>

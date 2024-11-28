@@ -81,7 +81,7 @@ const AdminCustomers = () => {
                             </Tr>
                         </Thead>
                         <Tbody>
-                            {customers.map((customer) => (
+                            {customers.slice().reverse().map((customer) => (
                                 <Tr key={customer.id}>
                                     <Td>{customer.id}</Td>
                                     <Td>{customer.username}</Td>
