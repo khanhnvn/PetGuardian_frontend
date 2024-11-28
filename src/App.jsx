@@ -23,6 +23,9 @@ import ProductDetail from './pages/components/ProductDetail.jsx';
 import CheckoutPage from './pages/CheckoutPage.jsx';
 import Success from './pages/Success.jsx';
 import CancelPay from './pages/Cancel.jsx';
+import AdminUsers from './pages/AdminUsers.jsx';
+import AdminCustomers from './pages/AdminCustomers.jsx';
+
 
 function App() {
     const [cart, setCart] = useState([]);
@@ -83,6 +86,12 @@ function App() {
                 <Route path="/product" element={<Product fetchCart={fetchCart} cart={cart} setCart={setCart} /> } /> 
                 <Route path="/product/:productId" element={<ProductDetail fetchCart={fetchCart} setCart={setCart} /> } />
                 <Route path="/checkout" element={<CheckoutPage fetchCart={fetchCart} cart={cart} setCart={setCart} /> } /> 
+
+                
+                <Route path="/admin/users" element={<AdminUsers />} />
+                <Route path="/admin/customers" element={<AdminCustomers />} /> 
+
+
                 
                 <Route path="/success" element={<Success />} /> 
                 <Route path="/cancel" element={<CancelPay />} /> 
