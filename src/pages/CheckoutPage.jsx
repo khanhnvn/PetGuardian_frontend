@@ -110,6 +110,7 @@ const handleCheckout = async () => {
             const data = await response.json();
             if (data.checkoutUrl) {
                 window.open(data.checkoutUrl, '_blank');
+                navigate(`/cart`);
             } else {
                 toast({
                     title: 'Lỗi!',

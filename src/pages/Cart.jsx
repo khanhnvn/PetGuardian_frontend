@@ -181,7 +181,7 @@ const Cart = () => {
                                             <Heading as="h3" size="md">
                                                 {item.name}
                                             </Heading>
-                                            <Text>Giá: {item.price}</Text>
+                                            <Text>Giá: {item.price} VND</Text>
                                             <NumberInput 
                                                 value={item.quantity} 
                                                 min={1} 
@@ -203,7 +203,7 @@ const Cart = () => {
                                 </Box>
                             ))}
                             <Box>
-                                <Text fontSize="xl" fontWeight="bold">Tổng tiền: {totalPrice}</Text> {/* Hiển thị tổng tiền */}
+                                <Text fontSize="xl" fontWeight="bold">Tổng tiền: {totalPrice} VND</Text> {/* Hiển thị tổng tiền */}
                                 
                                 <Button colorScheme="blue" mt={4} onClick={handleCheckout}>
                                     Tiến hành thanh toán
