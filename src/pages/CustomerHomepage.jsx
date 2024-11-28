@@ -65,7 +65,7 @@ const CustomerHomePage = () => {
                                         <Th>Tên món hàng</Th>
                                         <Th>Ngày, giờ mua</Th>
                                         <Th>Số lượng</Th>
-                                        <Th>Giá tiền</Th>
+                                        <Th>Đơn giá</Th>
                                     </Tr>
                                 </Thead>
                                 <Tbody>

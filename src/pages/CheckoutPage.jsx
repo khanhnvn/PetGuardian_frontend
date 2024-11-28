@@ -109,7 +109,7 @@ const handleCheckout = async () => {
         if (response.ok) {
             const data = await response.json();
             if (data.checkoutUrl) {
-                window.open(data.checkoutUrl, '_self');
+                window.open(data.checkoutUrl, '_blank');
             } else {
                 toast({
                     title: 'Lỗi!',
