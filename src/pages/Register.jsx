@@ -138,7 +138,7 @@ const Register = () => {
                             <Flex gap={10} fontSize="lg">
                                 <Radio value={1}>user</Radio>
                                 {/* <Radio value={2}>admin</Radio> */}
-                                <Radio value={3}>customer</Radio>
+                                <Radio value={3}>shop</Radio>
                             </Flex>
                         </RadioGroup>
 

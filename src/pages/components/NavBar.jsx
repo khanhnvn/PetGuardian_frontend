@@ -104,7 +104,7 @@ const Navbar = ({}) => {
                                 <NavLink to="/admin/users">
                                     <Tab _selected={{ color: 'blue.500' }}>Users</Tab>
                                 </NavLink>
-                                <NavLink to="/admin/customers">
+                                <NavLink to="/admin/shops">
                                     <Tab _selected={{ color: 'blue.500' }}>Customers</Tab>
                                 </NavLink>
                                 <NavLink to="/admin/allproducts">

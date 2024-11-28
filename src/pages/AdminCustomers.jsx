@@ -65,11 +65,11 @@ const AdminCustomers = () => {
             <Box flex={1}>
                 <Container maxW="container.lg" p={10}>
                     <Heading as="h1" size="xl" mb={4}>
-                        Quản lý khách hàng
+                        Quản lý shop 
                     </Heading>
 
                     <Heading as="h2" size="lg" mb={2}>
-                        Tổng khách hàng: {customers.length}
+                        Tổng : {customers.length}
                     </Heading>
 
                     <Table variant="simple">
@@ -81,7 +81,7 @@ const AdminCustomers = () => {
                             </Tr>
                         </Thead>
                         <Tbody>
-                            {customers.slice().reverse().map((customer) => (
+                            {customers.map((customer) => (
                                 <Tr key={customer.id}>
                                     <Td>{customer.id}</Td>
                                     <Td>{customer.username}</Td>
