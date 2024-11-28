@@ -54,7 +54,7 @@ const CustomerHomePage = () => {
                             Tổng doanh thu (không tính phí ship)
                         </Heading>
                         <Text fontSize="2xl">
-                            {revenue} VND
+                            {revenue}
                         </Text>
 
                         {/* Check if salesHistory is an array and not empty */}
@@ -74,7 +74,7 @@ const CustomerHomePage = () => {
                                             <Td>{item.name}</Td>
                                             <Td>{item.order_date}</Td>
                                             <Td>{item.quantity}</Td>
-											<Td>{parseInt(item.price, 10).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</Td>
+											<Td>{item.price}</Td>
                                         </Tr>
                                     ))}
                                 </Tbody>
