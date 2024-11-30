@@ -111,22 +111,23 @@ const PetHealthDetail = () => {
                         <HStack spacing={50} alignItems="flex-start" >
                             {/* Thông tin thú cưng */}
                             <Box>
-                                <Image src={`/uploads/${pet.pet_image}`} alt={pet.pet_name} boxSize="200px" objectFit="cover" mb={10} />
+                                <Image src={`https://aqueous-island-09657-d7724403d9f8.herokuapp.com/uploads/${pet.pet_image}`}  alt={pet.pet_name} boxSize="200px" objectFit="cover" mb={10} />
+
                                 <VStack alignItems="start">
                                     <Text>
-                                        **Type:** {pet.pet_type}
+                                        Type: {pet.pet_type}
                                     </Text>
                                     <Text>
-                                        **Age:** {pet.pet_age}
+                                        Age: {pet.pet_age}
                                     </Text>
                                     <Text>
-                                        **Birthday:** {pet.pet_birthday}
+                                        Birthday: {pet.pet_birthday} {new Date(pet.pet_birthday).toLocaleDateString()}
                                     </Text>
                                     <Text>
-                                        **Gender:** {pet.pet_gender}
+                                        Gender: {pet.pet_gender}
                                     </Text>
                                     <Text>
-                                        **Color:** {pet.pet_color}
+                                        Color: {pet.pet_color}
                                     </Text>
                                     {/* Hiển thị thêm thông tin nếu cần */}
                                 </VStack>
