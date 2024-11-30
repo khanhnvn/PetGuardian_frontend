@@ -114,22 +114,22 @@ const AddVeterinarianContact = () => {
                     onChange={(e) => setContactName(e.target.value)}
                   />
                 </FormControl>
-                <FormControl>
+                {/* <FormControl>
                   <FormLabel>Giới tính:</FormLabel>
                   <Select value={contactGender} onChange={(e) => setContactGender(e.target.value)}>
                     <option value="male">Nam</option>
                     <option value="female">Nữ</option>
                     <option value="other">Khác</option>
                   </Select>
-                </FormControl>
-                <FormControl>
+                </FormControl> */}
+                {/* <FormControl>
                   <FormLabel>Ngôn ngữ:</FormLabel>
                   <Input
                     type="text"
                     value={contactLanguage}
                     onChange={(e) => setContactLanguage(e.target.value)}
                   />
-                </FormControl>
+                </FormControl> */}
                 <FormControl>
                   <FormLabel>Số điện thoại:</FormLabel>
                   <Input
@@ -154,16 +154,16 @@ const AddVeterinarianContact = () => {
                     onChange={(e) => setVetEmail(e.target.value)}
                   />
                 </FormControl>
-                <FormControl>
+                {/* <FormControl>
                   <FormLabel>Chuyên khoa:</FormLabel>
                   <Input
                     type="text"
                     value={vetSpeciality}
                     onChange={(e) => setVetSpeciality(e.target.value)}
                   />
-                </FormControl>
+                </FormControl> */}
                 <FormControl>
-                  <FormLabel>Phòng khám:</FormLabel>
+                  <FormLabel>Tên phòng khám:</FormLabel>
                   <Input
                     type="text"
                     value={vetClinic}
