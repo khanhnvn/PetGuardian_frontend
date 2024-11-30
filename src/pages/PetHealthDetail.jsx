@@ -20,7 +20,7 @@ import {
     Tr,
     Th,
     Td,
-    Spinner, Grid,
+    Spinner, Grid, useToast
 } from '@chakra-ui/react';
 import AddWeight from "./components/AddWeight.jsx";
 import DeleteWeight from "./components/DeleteWeight.jsx";
