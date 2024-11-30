@@ -91,13 +91,13 @@ const ShowVeterinarianContact = ({ contacts, setContacts }) => {
           >
             <VStack align="start" spacing={2}> {/* Thêm spacing cho dễ nhìn */}
               <Text fontWeight="bold">Tên liên lạc: {contact.contact_name}</Text>
-              <Text>Giới tính: {contact.contact_gender}</Text>
-              <Text>Ngôn ngữ: {contact.contact_language}</Text>
+              {/* <Text>Giới tính: {contact.contact_gender}</Text>
+              <Text>Ngôn ngữ: {contact.contact_language}</Text> */}
               <Text>Số điện thoại: {contact.contact_phone}</Text>
               <Text>Địa chỉ: {contact.vet_address}</Text>
               <Text>Email: {contact.vet_email}</Text>
-              <Text>Chuyên khoa: {contact.vet_speciality}</Text>
-              <Text>Phòng khám: {contact.vet_clinic}</Text>
+              {/* <Text>Chuyên khoa: {contact.vet_speciality}</Text> */}
+              <Text>Tên phòng khám: {contact.vet_clinic}</Text>
             </VStack>
             <HStack mt={4} justifyContent="end">
               <IconButton
