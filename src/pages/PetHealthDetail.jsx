@@ -121,7 +121,7 @@ const PetHealthDetail = () => {
                                         Age: {pet.pet_age}
                                     </Text>
                                     <Text>
-                                        Birthday: {pet.pet_birthday} {new Date(pet.pet_birthday).toLocaleDateString()}
+                                        Birthday:{new Date(pet.pet_birthday).toLocaleDateString()}
                                     </Text>
                                     <Text>
                                         Gender: {pet.pet_gender}
